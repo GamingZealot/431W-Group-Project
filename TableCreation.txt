@@ -1,0 +1,80 @@
+CREATE TABLE Categories{
+	CategoryId	INT		NOT NULL, 
+	ParentId	INT,
+	CategoryName	CHAR(20)	NOT NULL,
+	PRIMARY KEY(CategoryId) 
+};
+
+CREATE TABLE Categorized_as{
+	CategoryId	INT		NOT NULL,
+	ItemId		INT		NOT NULL,
+	PRIMARY KEY(CategoryId, ItemId),
+	FOREIGN KEY(CategoryId) REFERENCES Categories(CategoryId),
+	FOREIGN KEY(ItemId) REFERENCES Items(ItemId)
+}
+
+CREATE TABLE Items{
+	ItemId		INT		NOT NULL,
+	Location	CHAR(40), 
+	Paydate		DATE,
+	Description	CHAR(100),
+	PRIMARY KEY(ItemId) 
+};
+
+CREATE TABLE Sold_by{
+	ItemId		INT		NOT NULL,
+	SellerId	INT		NOT NULL,
+	PRIMARY KEY(ItemId, SellerId),
+	FOREIGN KEY(SellerId) REFERENCES Sellers(SellerId),
+	FOREIGN KEY(ItemId) REFERENCES Items(ItemId)
+	
+};
+
+CREATE TABLE Sellers{
+	SellerId	INT		NOT NULL, 
+	POC		CHAR(20)	NOT NULL,
+	POCphone	INT		NOT NULL,	
+	Revenue		DEC(10,2),
+	Category	CHAR(15),
+	RatingAvg	FLOAT(3,1),
+	TotalRatings	INT,
+	PRIMARY KEY(SellerId)	
+};
+
+CREATE TABLE SellerNames{
+	SellerId	INT		NOT NULL,
+	Address		CHAR(50), 
+	Name		CHAR(20),
+	PRIMARY KEY(SellerId),
+	FOREIGN KEY(SellerId) REFERENCES Sellers(SellerId)
+};
+
+CREATE TABLE Stocks{
+	ItemId		INT		NOT NULL,
+	Title		CHAR(20)	NOT NULL,
+	PRIMARY KEY(ItemId,Title),
+	FOREIGN KEY(ItemId) REFERENCES Items(ItemId),
+	FOREIGN KEY(Title) REFERENCES Movies(Title)
+};
+
+CREATE TABLE Movies{
+	Title		CHAR(20)	NOT NULL,
+	Year		INT,
+	Synopsis	TEXT(500),
+	PRIMARY KEY(Title)
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
