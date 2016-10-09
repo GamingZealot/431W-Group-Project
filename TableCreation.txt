@@ -1,80 +1,88 @@
-CREATE TABLE Categories{
-	CategoryId	INT		NOT NULL, 
-	ParentId	INT,
+CREATE TABLE Categories(
+	CategoryId		INTEGER		NOT NULL, 
+	ParentId		INTEGER,
 	CategoryName	CHAR(20)	NOT NULL,
 	PRIMARY KEY(CategoryId) 
-};
+);
 
-CREATE TABLE Categorized_as{
-	CategoryId	INT		NOT NULL,
-	ItemId		INT		NOT NULL,
+CREATE TABLE Categorized_as(
+	CategoryId	INTEGER		NOT NULL,
+	ItemId		INTEGER		NOT NULL,
 	PRIMARY KEY(CategoryId, ItemId),
 	FOREIGN KEY(CategoryId) REFERENCES Categories(CategoryId),
 	FOREIGN KEY(ItemId) REFERENCES Items(ItemId)
-}
+);
 
-CREATE TABLE Items{
-	ItemId		INT		NOT NULL,
+CREATE TABLE Items(
+	ItemId		INTEGER		NOT NULL,
 	Location	CHAR(40), 
 	Paydate		DATE,
 	Description	CHAR(100),
 	PRIMARY KEY(ItemId) 
-};
+);
 
-CREATE TABLE Sold_by{
-	ItemId		INT		NOT NULL,
-	SellerId	INT		NOT NULL,
+CREATE TABLE Sold_by(
+	ItemId		INTEGER		NOT NULL,
+	SellerId	INTEGER		NOT NULL,
 	PRIMARY KEY(ItemId, SellerId),
 	FOREIGN KEY(SellerId) REFERENCES Sellers(SellerId),
 	FOREIGN KEY(ItemId) REFERENCES Items(ItemId)
 	
-};
+);
 
-CREATE TABLE Sellers{
-	SellerId	INT		NOT NULL, 
-	POC		CHAR(20)	NOT NULL,
-	POCphone	INT		NOT NULL,	
-	Revenue		DEC(10,2),
-	Category	CHAR(15),
-	RatingAvg	FLOAT(3,1),
-	TotalRatings	INT,
+CREATE TABLE Sellers(
+	SellerId		INTEGER		NOT NULL, 
+	POC				CHAR(20)	NOT NULL,
+	POCphone		INTEGER		NOT NULL,	
+	Revenue			DEC(10,2),
+	Category		CHAR(15),
+	RatingAvg		FLOAT(3,1),
+	TotalRatings	INTEGER,
 	PRIMARY KEY(SellerId)	
-};
+);
 
-CREATE TABLE SellerNames{
-	SellerId	INT		NOT NULL,
+CREATE TABLE SellerNames(
+	SellerId	INTEGER		NOT NULL,
 	Address		CHAR(50), 
 	Name		CHAR(20),
 	PRIMARY KEY(SellerId),
 	FOREIGN KEY(SellerId) REFERENCES Sellers(SellerId)
-};
+);
 
-CREATE TABLE Stocks{
-	ItemId		INT		NOT NULL,
+CREATE TABLE Stocks(
+	ItemId		INTEGER		NOT NULL,
 	Title		CHAR(20)	NOT NULL,
 	PRIMARY KEY(ItemId,Title),
 	FOREIGN KEY(ItemId) REFERENCES Items(ItemId),
 	FOREIGN KEY(Title) REFERENCES Movies(Title)
-};
+);
 
-CREATE TABLE Movies{
+CREATE TABLE Movies(
 	Title		CHAR(20)	NOT NULL,
-	Year		INT,
+	Year		INTEGER,
 	Synopsis	TEXT(500),
 	PRIMARY KEY(Title)
-};
+);
 
 
 
+CREATE TABLE Users(
+	uid 		CHAR(20),
+	Password	CHAR(20)	NOT NULL,
+	Address 	CHAR(60)	NOT NULL,
+	email		CHAR(20)	NOT NULL,
+	UNIQUE(email),
+	PRIMARY KEY(uid)
+);
 
-
-
-
-
-
-
-
-
-
+CREATE TABLE CreditCards(
+	CardNum		INTEGER,
+	User_id		CHAR(20),
+	CardType	CHAR(20)	NOT NULL,
+	CardExp		DATE		NOT NULL,
+	PRIMARY KEY(CardNum),
+	FOREIGN KEY(User_id) REFERENCES Users(uid)
+		ON DELETE CASCADE
+);
 
 
