@@ -1,6 +1,6 @@
 CREATE TABLE Categories(
-	CategoryId		INTEGER		NOT NULL, 
-	ParentId		INTEGER,
+	CategoryId	INTEGER		NOT NULL, 
+	ParentId	INTEGER,
 	CategoryName	CHAR(20)	NOT NULL,
 	PRIMARY KEY(CategoryId) 
 );
@@ -26,13 +26,12 @@ CREATE TABLE Sold_by(
 	SellerId	INTEGER		NOT NULL,
 	PRIMARY KEY(ItemId, SellerId),
 	FOREIGN KEY(SellerId) REFERENCES Sellers(SellerId),
-	FOREIGN KEY(ItemId) REFERENCES Items(ItemId)
-	
+	FOREIGN KEY(ItemId) REFERENCES Items(ItemId)	
 );
 
 CREATE TABLE Sellers(
 	SellerId		INTEGER		NOT NULL, 
-	POC				CHAR(20)	NOT NULL,
+	POC			CHAR(20)	NOT NULL,
 	POCphone		INTEGER		NOT NULL,	
 	Revenue			DEC(10,2),
 	Category		CHAR(15),
@@ -64,7 +63,25 @@ CREATE TABLE Movies(
 	PRIMARY KEY(Title)
 );
 
+CREATE TABLE SaleItems(
+	Stock 		INTEGER		NOT NULL,
+	Price		REAL		NOT NULL,
+	ItemId		INTEGER,
+	FOREIGN KEY(ItemId) REFERENCES Sold_by(ItemId)
+);
 
+CREATE TABLE RentableItems(
+	RentPrice	REAL		NOT NULL,
+	ItemId		INTEGER,
+	FOREIGN KEY(ItemId) REFERENCES Sold_by(ItemId)
+);
+
+CREATE TABLE AuctionItems(
+	EndTime 	DATE		NOT NULL,
+	CurrentBid	REAL		NOT NULL,
+	ItemId		INTEGER,
+	FOREIGN KEY(ItemId) REFERENCES Sold_by(ItemId)
+);
 
 CREATE TABLE Users(
 	uid 		CHAR(20),
@@ -84,5 +101,3 @@ CREATE TABLE CreditCards(
 	FOREIGN KEY(User_id) REFERENCES Users(uid)
 		ON DELETE CASCADE
 );
-
-
