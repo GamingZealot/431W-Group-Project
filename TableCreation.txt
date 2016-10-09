@@ -30,12 +30,12 @@ CREATE TABLE Sold_by(
 );
 
 CREATE TABLE Sellers(
-	SellerId		INTEGER		NOT NULL, 
-	POC			CHAR(20)	NOT NULL,
-	POCphone		INTEGER		NOT NULL,	
-	Revenue			DEC(10,2),
-	Category		CHAR(15),
-	RatingAvg		FLOAT(3,1),
+	SellerId	INTEGER		NOT NULL, 
+	POC		CHAR(20)	NOT NULL,
+	POCphone	INTEGER		NOT NULL,	
+	Revenue		DEC(10,2),
+	Category	CHAR(15),
+	RatingAvg	FLOAT(3,1),
 	TotalRatings	INTEGER,
 	PRIMARY KEY(SellerId)	
 );
