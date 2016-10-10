@@ -25,30 +25,25 @@ CREATE TABLE Sold_by(
 	ItemId		INTEGER		NOT NULL,
 	SellerId	INTEGER		NOT NULL,
 	PRIMARY KEY(ItemId, SellerId),
-	FOREIGN KEY(SellerId) REFERENCES Sellers(SellerId),
+	FOREIGN KEY(SellerId) REFERENCES Users(uid),
 	FOREIGN KEY(ItemId) REFERENCES Items(ItemId)	
 );
 
 CREATE TABLE Sellers(
-	SellerId	INTEGER		NOT NULL, 
-	POC		CHAR(20)	NOT NULL,	
-	Revenue		DEC(10,2),
-	Category	CHAR(15),
-	RatingAvg	FLOAT(3,1),
-	TotalRatings	INTEGER,
-	PRIMARY KEY(SellerId)	
-);
-
-CREATE TABLE SellerNames(
-	SellerId	INTEGER		NOT NULL,
+	uid		INTEGER		NOT NULL, 
+	POC		CHAR(20)	NOT NULL,
 	Phone		INTEGER		NOT NULL,
 	AddressStreet	CHAR(50), 
 	AddressCity	CHAR(20),
 	AddressState	CHAR(10),
 	AddressZip	INTEGER,
 	Name		CHAR(20),
-	PRIMARY KEY(SellerId),
-	FOREIGN KEY(SellerId) REFERENCES Sellers(SellerId)
+	Revenue		DEC(10,2),
+	Category	CHAR(15),
+	RatingAvg	FLOAT(3,1),
+	TotalRatings	INTEGER,
+	PRIMARY KEY(uid),
+	FOREIGN KEY(uid) REFERENCES Users(uid)
 );
 
 CREATE TABLE Stocks(
@@ -113,10 +108,10 @@ CREATE TABLE Transactions(
 	TransactionId	INTEGER,
 	Revenue		DEC(10,2),
 	PRIMARY KEY(TransactionId),
-	FOREIGN KEY(SellerId) REFERENCES Sellers(SellerId)
-		ON DELETE CASCASE,
+	FOREIGN KEY(SellerId) REFERENCES Users(uid)
+		ON DELETE NO ACTION,
 	FOREIGN KEY(uid) REFERENCES Users(uid)
-		ON DELETE CASCASE,
+		ON DELETE NO ACTION,
 	FOREIGN KEY(ItemId) REFERENCES Items(ItemId)
-		ON DELETE CASCASE
+		ON DELETE NO ACTION
 );
