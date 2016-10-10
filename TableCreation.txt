@@ -114,6 +114,7 @@ CREATE TABLE Transactions(
 	ItemId		INTEGER,
 	TransactionId	INTEGER,
 	Revenue		DEC(10,2),
+	Timestamp	DATETIME,
 	PRIMARY KEY(TransactionId),
 	FOREIGN KEY(SellerId) REFERENCES Users(uid)
 		ON DELETE NO ACTION,
