@@ -110,7 +110,7 @@ CREATE TABLE CreditCards(
 	PRIMARY KEY(CardNum)
 );
 
-CREATE TABLE USES(
+CREATE TABLE Uses(
 	uid		INTEGER,
 	CardNum		INTEGER,
 	PRIMARY KEY(uid, CardNum),
