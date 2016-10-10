@@ -111,6 +111,7 @@ CREATE TABLE Transactions(
 	uid		INTEGER,
 	ItemId		INTEGER,
 	TransactionId	INTEGER,
+	Revenue		DEC(10,2),
 	PRIMARY KEY(TransactionId),
 	FOREIGN KEY(SellerId) REFERENCES Sellers(SellerId)
 		ON DELETE CASCASE,
