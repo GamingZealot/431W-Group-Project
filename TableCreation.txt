@@ -31,8 +31,7 @@ CREATE TABLE Sold_by(
 
 CREATE TABLE Sellers(
 	SellerId	INTEGER		NOT NULL, 
-	POC		CHAR(20)	NOT NULL,
-	POCphone	INTEGER		NOT NULL,	
+	POC		CHAR(20)	NOT NULL,	
 	Revenue		DEC(10,2),
 	Category	CHAR(15),
 	RatingAvg	FLOAT(3,1),
@@ -42,7 +41,11 @@ CREATE TABLE Sellers(
 
 CREATE TABLE SellerNames(
 	SellerId	INTEGER		NOT NULL,
-	Address		CHAR(50), 
+	Phone		INTEGER		NOT NULL,
+	AddressStreet	CHAR(50), 
+	AddressCity	CHAR(20),
+	AddressState	CHAR(10),
+	AddressZip	INTEGER,
 	Name		CHAR(20),
 	PRIMARY KEY(SellerId),
 	FOREIGN KEY(SellerId) REFERENCES Sellers(SellerId)
@@ -88,6 +91,7 @@ CREATE TABLE Users(
 	Password	CHAR(20)	NOT NULL,
 	Address 	CHAR(60)	NOT NULL,
 	email		CHAR(20)	NOT NULL,
+	Age		INTEGER,
 	UNIQUE(email),
 	PRIMARY KEY(uid)
 );
