@@ -29,7 +29,6 @@ CREATE TABLE Sold_by(
 	FOREIGN KEY(ItemId) REFERENCES Items(ItemId)	
 );
 
-
 CREATE TABLE Is_Sellers(
 	uid 		INTEGER,
 	SellerId	INTEGER		NOT NULL,
@@ -37,6 +36,7 @@ CREATE TABLE Is_Sellers(
 	FOREIGN KEY(uid) REFERENCES Users(uid),
 	FOREIGN KEY(SellerId) REFERENCES Sellers(SellerId)
 );
+
 CREATE TABLE Sellers(
 	SellerId	INTEGER		NOT NULL, 
 	POC		CHAR(20)	NOT NULL,
