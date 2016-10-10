@@ -87,7 +87,7 @@ CREATE TABLE AuctionItems(
 );
 
 CREATE TABLE Users(
-	uid 		CHAR(20),
+	uid 		INTEGER,
 	Password	CHAR(20)	NOT NULL,
 	Address 	CHAR(60)	NOT NULL,
 	email		CHAR(20)	NOT NULL,
@@ -98,10 +98,24 @@ CREATE TABLE Users(
 
 CREATE TABLE CreditCards(
 	CardNum		INTEGER,
-	User_id		CHAR(20),
+	User_id		INTEGER,
 	CardType	CHAR(20)	NOT NULL,
 	CardExp		DATE		NOT NULL,
 	PRIMARY KEY(CardNum),
 	FOREIGN KEY(User_id) REFERENCES Users(uid)
 		ON DELETE CASCADE
+);
+
+CREATE TABLE Transactions(
+	SellerId	INTEGER,
+	uid		INTEGER,
+	ItemId		INTEGER,
+	TransactionId	INTEGER,
+	PRIMARY KEY(TransactionId),
+	FOREIGN KEY(SellerId) REFERENCES Sellers(SellerId)
+		ON DELETE CASCASE,
+	FOREIGN KEY(uid) REFERENCES Users(uid)
+		ON DELETE CASCASE,
+	FOREIGN KEY(ItemId) REFERENCES Items(ItemId)
+		ON DELETE CASCASE
 );
