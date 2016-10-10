@@ -29,8 +29,16 @@ CREATE TABLE Sold_by(
 	FOREIGN KEY(ItemId) REFERENCES Items(ItemId)	
 );
 
+
+CREATE TABLE Is_Sellers(
+	uid 		INTEGER,
+	SellerId	INTEGER		NOT NULL,
+	PRIMARY KEY(uid, SellerId),
+	FOREIGN KEY(uid) REFERENCES Users(uid),
+	FOREIGN KEY(SellerId) REFERENCES Sellers(SellerId)
+);
 CREATE TABLE Sellers(
-	uid		INTEGER		NOT NULL, 
+	SellerId	INTEGER		NOT NULL, 
 	POC		CHAR(20)	NOT NULL,
 	Phone		INTEGER		NOT NULL,
 	AddressStreet	CHAR(50), 
@@ -42,8 +50,7 @@ CREATE TABLE Sellers(
 	Category	CHAR(15),
 	RatingAvg	FLOAT(3,1),
 	TotalRatings	INTEGER,
-	PRIMARY KEY(uid),
-	FOREIGN KEY(uid) REFERENCES Users(uid)
+	PRIMARY KEY(SellerId)
 );
 
 CREATE TABLE Stocks(
@@ -115,3 +122,4 @@ CREATE TABLE Transactions(
 	FOREIGN KEY(ItemId) REFERENCES Items(ItemId)
 		ON DELETE NO ACTION
 );
+
