@@ -2,6 +2,7 @@ CREATE TABLE Categories(
 	CategoryId	INTEGER		NOT NULL, 
 	ParentId	INTEGER,
 	CategoryName	CHAR(20)	NOT NULL,
+	UNIQUE(CategoryName),
 	PRIMARY KEY(CategoryId) 
 );
 
@@ -65,6 +66,7 @@ CREATE TABLE Movies(
 	Title		CHAR(20)	NOT NULL,
 	Year		INTEGER,
 	Synopsis	TEXT(500),
+	UNIQUE(Synopsis),
 	PRIMARY KEY(Title)
 );
 
@@ -91,7 +93,10 @@ CREATE TABLE AuctionItems(
 CREATE TABLE Users(
 	uid 		INTEGER,
 	Password	CHAR(20)	NOT NULL,
-	Address 	CHAR(60)	NOT NULL,
+	AddressStreet	CHAR(50)	NOT NULL, 
+	AddressCity	CHAR(20)	NOT NULL,
+	AddressState	CHAR(10)	NOT NULL,	
+	AddressZip	INTEGER		NOT NULL,
 	email		CHAR(20)	NOT NULL,
 	Age		INTEGER,
 	UNIQUE(email),
@@ -100,11 +105,20 @@ CREATE TABLE Users(
 
 CREATE TABLE CreditCards(
 	CardNum		INTEGER,
-	User_id		INTEGER,
 	CardType	CHAR(20)	NOT NULL,
 	CardExp		DATE		NOT NULL,
-	PRIMARY KEY(CardNum),
-	FOREIGN KEY(User_id) REFERENCES Users(uid)
+	PRIMARY KEY(CardNum)
+);
+
+CREATE TABLE USES(
+	uid		INTEGER,
+	CardNum		INTEGER,
+	PRIMARY KEY(uid, CardNum),
+	FOREIGN KEY(uid) REFERENCES Users(uid)
+		ON UPDATE CASCASE
+		ON DELETE CASCADE,
+	FOREIGN KEY(CardNum) REFERENCES CreditCards(CardNum)
+		ON UPDATE CASCADE
 		ON DELETE CASCADE
 );
 
@@ -136,8 +150,8 @@ CREATE TABLE Was_Rated(
 
 CREATE TABLE Rating(
 	RaterId		INTEGER,
-	Rating		INTEGER,
-	Description	CHAR(50),
+	Rating		INTEGER		NOT NULL,
+	Description	CHAR(50)	NOT NULL,
 	PRIMARY KEY(RaterId, Rating, Description),
 );
 
