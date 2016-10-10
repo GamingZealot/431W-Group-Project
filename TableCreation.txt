@@ -123,3 +123,20 @@ CREATE TABLE Transactions(
 		ON DELETE NO ACTION
 );
 
+CREATE TABLE Was_Rated(
+	uid		INTEGER,
+	RaterId		INTEGER,
+	PRIMARY KEY(uid, RaterId),
+	FOREIGN KEY(uid) REFERENCES Users(uid)
+		ON DELETE NO ACTION,
+	FOREIGN KEY(RaterId) REFERENCES Rating(RaterId)
+		ON DELETE NO ACTION
+);
+
+CREATE TABLE Rating(
+	RaterId		INTEGER,
+	Rating		INTEGER,
+	Description	CHAR(50),
+	PRIMARY KEY(RaterId, Rating, Description),
+);
+
