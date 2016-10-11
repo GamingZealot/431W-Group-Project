@@ -1,0 +1,171 @@
+/*
+> mysql -u root -p
+HOW TO: In mysql use command: source <PATH TO THIS FILE>
+To start over use: DROP DATABASE cmpsc431w;
+*/
+
+CREATE DATABASE cmpsc431w;
+USE cmpsc431w;
+
+CREATE TABLE Categories(
+	CategoryId	INTEGER		NOT NULL AUTO_INCREMENT, 
+	ParentId	INTEGER,
+	CategoryName	CHAR(20)	NOT NULL,
+	UNIQUE(CategoryName),
+	PRIMARY KEY(CategoryId),
+	FOREIGN KEY(ParentId) REFERENCES Categories(CategoryId)
+);
+
+CREATE TABLE Items(
+	ItemId		INTEGER		NOT NULL AUTO_INCREMENT,
+	Location	CHAR(40), 
+	Paydate		DATE,
+	Description	CHAR(100),
+	PRIMARY KEY(ItemId) 
+);
+
+CREATE TABLE Sellers(
+	SellerId	INTEGER		NOT NULL AUTO_INCREMENT, 
+	Phone		INTEGER		NOT NULL,
+	AddressStreet	VARCHAR(50), 
+	AddressCity	VARCHAR(20),
+	AddressState	VARCHAR(10),
+	AddressZip	INTEGER,
+	Name		VARCHAR(20),
+	Revenue		DEC(10,2),
+	Category	VARCHAR(15),
+	RatingAvg	FLOAT(3,1),
+	TotalRatings	INTEGER,
+	PRIMARY KEY(SellerId)
+);
+
+CREATE TABLE Movies(
+	MovieId		INTEGER		NOT NULL AUTO_INCREMENT,
+	Title		VARCHAR(20)	NOT NULL,
+	Year		INTEGER,
+	Synopsis	VARCHAR(500),
+	PRIMARY KEY(MovieId)
+);
+
+CREATE TABLE Categorized_as(
+	CategoryId	INTEGER		NOT NULL,
+	ItemId		INTEGER		NOT NULL,
+	PRIMARY KEY(CategoryId, ItemId),
+	FOREIGN KEY(CategoryId) REFERENCES Categories(CategoryId),
+	FOREIGN KEY(ItemId) REFERENCES Items(ItemId)
+);
+
+CREATE TABLE Is_Movie(
+	ItemId		INTEGER		NOT NULL,
+	MovieId		INTEGER		NOT NULL,
+	PRIMARY KEY(ItemId,MovieId),
+	FOREIGN KEY(ItemId) REFERENCES Items(ItemId),
+	FOREIGN KEY(MovieId) REFERENCES Movies(MovieId)
+);
+
+CREATE TABLE Users(
+	uid 		INTEGER		NOT NULL AUTO_INCREMENT,
+	Password	VARCHAR(20)	NOT NULL,
+	AddressStreet	VARCHAR(50)	NOT NULL, 
+	AddressCity	VARCHAR(20)	NOT NULL,
+	AddressState	VARCHAR(10)	NOT NULL,	
+	AddressZip	INTEGER		NOT NULL,
+	email		VARCHAR(20)	NOT NULL,
+	Age		INTEGER,
+	UNIQUE(email),
+	PRIMARY KEY(uid)
+);
+
+CREATE TABLE Sold_by(
+	ItemId		INTEGER		NOT NULL,
+	SellerId	INTEGER		NOT NULL,
+	PRIMARY KEY(ItemId, SellerId),
+	FOREIGN KEY(SellerId) REFERENCES Users(uid),
+	FOREIGN KEY(ItemId) REFERENCES Items(ItemId)	
+);
+
+CREATE TABLE Is_Seller(
+	uid 		INTEGER		NOT NULL,
+	SellerId	INTEGER		NOT NULL,
+	PRIMARY KEY(uid, SellerId),
+	FOREIGN KEY(uid) REFERENCES Users(uid),
+	FOREIGN KEY(SellerId) REFERENCES Sellers(SellerId)
+);
+
+CREATE TABLE SaleItems(
+	Stock 		INTEGER		NOT NULL,
+	Price		REAL		NOT NULL,
+	ItemId		INTEGER,
+	FOREIGN KEY(ItemId) REFERENCES Sold_by(ItemId)
+);
+
+CREATE TABLE RentableItems(
+	RentPrice	REAL		NOT NULL,
+	ItemId		INTEGER,
+	FOREIGN KEY(ItemId) REFERENCES Sold_by(ItemId)
+);
+
+CREATE TABLE AuctionItems(
+	EndTime 	DATE		NOT NULL,
+	CurrentBid	REAL		NOT NULL,
+	ItemId		INTEGER,
+	FOREIGN KEY(ItemId) REFERENCES Sold_by(ItemId)
+);
+
+CREATE TABLE CreditCards(
+	CardId		Integer		NOT NULL AUTO_INCREMENT,
+	CardNum		VARCHAR(50)	NOT NULL,
+	SecurityCode	VARCHAR(50)	NOT NULL,
+	CardType	VARCHAR(20)	NOT NULL,
+	CardExp		DATE		NOT NULL,
+	PRIMARY KEY(CardId)
+);
+
+CREATE TABLE Uses_Card(
+	uid		INTEGER,
+	CardId		INTEGER,
+	PRIMARY KEY(uid, CardId),
+	FOREIGN KEY(uid) REFERENCES Users(uid)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE,
+	FOREIGN KEY(CardId) REFERENCES CreditCards(CardId)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE
+);
+
+CREATE TABLE Transactions(
+	TransactionId	INTEGER		NOT NULL AUTO_INCREMENT,
+	SellerId	INTEGER,
+	uid		INTEGER,
+	ItemId		INTEGER,
+	Revenue		DEC(10,2),
+	Timestamp	DATETIME,
+	PRIMARY KEY(TransactionId),
+	FOREIGN KEY(SellerId) REFERENCES Users(uid)
+		ON DELETE NO ACTION,
+	FOREIGN KEY(uid) REFERENCES Users(uid)
+		ON DELETE NO ACTION,
+	FOREIGN KEY(ItemId) REFERENCES Items(ItemId)
+		ON DELETE NO ACTION
+);
+
+CREATE TABLE Ratings(
+	RatingId	INTEGER		NOT NULL AUTO_INCREMENT,
+	RaterId		INTEGER,
+	ItemId		INTEGER,
+	Rating		INTEGER		NOT NULL,
+	CommentText	VARCHAR(300)	NOT NULL,
+	PRIMARY KEY(RatingId),
+	FOREIGN KEY (RaterId) REFERENCES Users(uid),
+	FOREIGN KEY (ItemId) REFERENCES Items(ItemId)
+);
+
+CREATE TABLE Was_Rated(
+	uid		INTEGER,
+	RatingId	INTEGER,
+	PRIMARY KEY(uid, RatingId),
+	FOREIGN KEY(uid) REFERENCES Users(uid)
+		ON DELETE NO ACTION,
+	FOREIGN KEY(RatingId) REFERENCES Ratings(RatingId)
+		ON DELETE NO ACTION
+);
