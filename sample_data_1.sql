@@ -62,3 +62,4 @@ INSERT INTO Categories (categoryId, parentId, categoryName) VALUES (29, 5, "Roma
 INSERT INTO Categories (categoryId, parentId, categoryName) VALUES (30, 5, "Sc-Fi");
 
 /* Movies to sell */
+INSERT INTO Movies (title, year, synopsis) VALUES ("Aliens", 1979, "After a space merchant vessel perceives an unknown transmission as distress call, their landing on the source moon finds one of the crew attacked by a mysterious lifeform. Continuing their journey back to Earth with the attacked crew having recovered and the critter deceased, they soon realize that its life cycle has merely begun.");
