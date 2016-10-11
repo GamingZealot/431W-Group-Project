@@ -8,164 +8,160 @@ CREATE DATABASE cmpsc431w;
 USE cmpsc431w;
 
 CREATE TABLE Categories(
-	CategoryId	INTEGER		NOT NULL AUTO_INCREMENT, 
-	ParentId	INTEGER,
-	CategoryName	CHAR(20)	NOT NULL,
-	UNIQUE(CategoryName),
-	PRIMARY KEY(CategoryId),
-	FOREIGN KEY(ParentId) REFERENCES Categories(CategoryId)
+	categoryId	INTEGER		NOT NULL AUTO_INCREMENT, 
+	parentId	INTEGER,
+	categoryName	CHAR(20)	NOT NULL,
+	UNIQUE(categoryName),
+	PRIMARY KEY(categoryId),
+	FOREIGN KEY(parentId) REFERENCES Categories(categoryId)
 );
 
 CREATE TABLE Items(
-	ItemId		INTEGER		NOT NULL AUTO_INCREMENT,
-	Location	CHAR(40), 
-	Paydate		DATE,
-	Description	CHAR(100),
-	PRIMARY KEY(ItemId) 
+	itemId		INTEGER		NOT NULL AUTO_INCREMENT,
+	location	CHAR(40), 
+	description	CHAR(100),
+	PRIMARY KEY(itemId) 
 );
 
 CREATE TABLE Sellers(
-	SellerId	INTEGER		NOT NULL AUTO_INCREMENT, 
-	Phone		INTEGER		NOT NULL,
-	AddressStreet	VARCHAR(50), 
-	AddressCity	VARCHAR(20),
-	AddressState	VARCHAR(10),
-	AddressZip	INTEGER,
-	Name		VARCHAR(20),
-	Revenue		DEC(10,2),
-	Category	VARCHAR(15),
-	RatingAvg	FLOAT(3,1),
-	TotalRatings	INTEGER,
-	PRIMARY KEY(SellerId)
+	sellerId	INTEGER		NOT NULL AUTO_INCREMENT,
+	companyName	VARCHAR(100), 
+	/*revenue	DEC(10,2),	Aren't these things we can just get using Ratings
+	ratingAvg	FLOAT(3,1),	and transactions table?
+	totalRatings	INTEGER,*/
+	PRIMARY KEY(sellerId)
 );
 
 CREATE TABLE Movies(
-	MovieId		INTEGER		NOT NULL AUTO_INCREMENT,
-	Title		VARCHAR(20)	NOT NULL,
-	Year		INTEGER,
-	Synopsis	VARCHAR(500),
-	PRIMARY KEY(MovieId)
+	movieId		INTEGER		NOT NULL AUTO_INCREMENT,
+	title		VARCHAR(20)	NOT NULL,
+	year		INTEGER,
+	synopsis	VARCHAR(500),
+	PRIMARY KEY(movieId)
 );
 
 CREATE TABLE Categorized_as(
-	CategoryId	INTEGER		NOT NULL,
-	ItemId		INTEGER		NOT NULL,
-	PRIMARY KEY(CategoryId, ItemId),
-	FOREIGN KEY(CategoryId) REFERENCES Categories(CategoryId),
-	FOREIGN KEY(ItemId) REFERENCES Items(ItemId)
+	categoryId	INTEGER		NOT NULL,
+	itemId		INTEGER		NOT NULL,
+	PRIMARY KEY(categoryId, itemId),
+	FOREIGN KEY(categoryId) REFERENCES Categories(categoryId),
+	FOREIGN KEY(itemId) REFERENCES Items(itemId)
 );
 
 CREATE TABLE Is_Movie(
-	ItemId		INTEGER		NOT NULL,
-	MovieId		INTEGER		NOT NULL,
-	PRIMARY KEY(ItemId,MovieId),
-	FOREIGN KEY(ItemId) REFERENCES Items(ItemId),
-	FOREIGN KEY(MovieId) REFERENCES Movies(MovieId)
+	itemId		INTEGER		NOT NULL,
+	movieId		INTEGER		NOT NULL,
+	format		VARCHAR(20),
+	PRIMARY KEY(itemId, movieId),
+	FOREIGN KEY(itemId) REFERENCES Items(itemId),
+	FOREIGN KEY(movieId) REFERENCES Movies(movieId)
 );
 
 CREATE TABLE Users(
 	uid 		INTEGER		NOT NULL AUTO_INCREMENT,
-	Password	VARCHAR(20)	NOT NULL,
-	AddressStreet	VARCHAR(50)	NOT NULL, 
-	AddressCity	VARCHAR(20)	NOT NULL,
-	AddressState	VARCHAR(10)	NOT NULL,	
-	AddressZip	INTEGER		NOT NULL,
-	email		VARCHAR(20)	NOT NULL,
-	Age		INTEGER,
+	password	VARCHAR(100)	NOT NULL,
+	addressStreet	VARCHAR(50), 
+	addressCity	VARCHAR(50),
+	addressState	VARCHAR(50),	
+	addressZip	VARCHAR(50),
+	email		VARCHAR(50),
+	phone		INTEGER		NOT NULL,
+	name		VARCHAR(50),
+	age		INTEGER,
 	UNIQUE(email),
 	PRIMARY KEY(uid)
 );
 
-CREATE TABLE Sold_by(
-	ItemId		INTEGER		NOT NULL,
-	SellerId	INTEGER		NOT NULL,
-	PRIMARY KEY(ItemId, SellerId),
-	FOREIGN KEY(SellerId) REFERENCES Users(uid),
-	FOREIGN KEY(ItemId) REFERENCES Items(ItemId)	
+CREATE TABLE Sold_By(
+	itemId		INTEGER		NOT NULL,
+	sellerId	INTEGER		NOT NULL,
+	PRIMARY KEY(itemId, sellerId),
+	FOREIGN KEY(sellerId) REFERENCES Sellers(sellerId),
+	FOREIGN KEY(itemId) REFERENCES Items(itemId)	
 );
 
 CREATE TABLE Is_Seller(
 	uid 		INTEGER		NOT NULL,
-	SellerId	INTEGER		NOT NULL,
-	PRIMARY KEY(uid, SellerId),
+	sellerId	INTEGER		NOT NULL,
+	PRIMARY KEY(uid, sellerId),
 	FOREIGN KEY(uid) REFERENCES Users(uid),
-	FOREIGN KEY(SellerId) REFERENCES Sellers(SellerId)
+	FOREIGN KEY(sellerId) REFERENCES Sellers(sellerId)
 );
 
 CREATE TABLE SaleItems(
-	Stock 		INTEGER		NOT NULL,
-	Price		REAL		NOT NULL,
-	ItemId		INTEGER,
-	FOREIGN KEY(ItemId) REFERENCES Sold_by(ItemId)
+	stock 		INTEGER		NOT NULL,
+	irice		REAL		NOT NULL,
+	itemId		INTEGER,
+	FOREIGN KEY(itemId) REFERENCES Sold_By(itemId)
 );
 
 CREATE TABLE RentableItems(
 	RentPrice	REAL		NOT NULL,
 	ItemId		INTEGER,
-	FOREIGN KEY(ItemId) REFERENCES Sold_by(ItemId)
+	FOREIGN KEY(ItemId) REFERENCES Sold_By(ItemId)
 );
 
 CREATE TABLE AuctionItems(
-	EndTime 	DATE		NOT NULL,
-	CurrentBid	REAL		NOT NULL,
-	ItemId		INTEGER,
-	FOREIGN KEY(ItemId) REFERENCES Sold_by(ItemId)
+	endTime 	DATE		NOT NULL,
+	currentBid	REAL		NOT NULL,
+	itemId		INTEGER,
+	FOREIGN KEY(itemId) REFERENCES Sold_By(itemId)
 );
 
 CREATE TABLE CreditCards(
-	CardId		Integer		NOT NULL AUTO_INCREMENT,
-	CardNum		VARCHAR(50)	NOT NULL,
-	SecurityCode	VARCHAR(50)	NOT NULL,
-	CardType	VARCHAR(20)	NOT NULL,
-	CardExp		DATE		NOT NULL,
-	PRIMARY KEY(CardId)
+	cardId		Integer		NOT NULL AUTO_INCREMENT,
+	cardNum		VARCHAR(100)	NOT NULL,
+	securityCode	VARCHAR(100)	NOT NULL,
+	cardType	VARCHAR(20)	NOT NULL,
+	cardExp		DATE		NOT NULL,
+	PRIMARY KEY(cardId)
 );
 
 CREATE TABLE Uses_Card(
 	uid		INTEGER,
-	CardId		INTEGER,
-	PRIMARY KEY(uid, CardId),
+	cardId		INTEGER,
+	PRIMARY KEY(uid, cardId),
 	FOREIGN KEY(uid) REFERENCES Users(uid)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE,
-	FOREIGN KEY(CardId) REFERENCES CreditCards(CardId)
+	FOREIGN KEY(cardId) REFERENCES CreditCards(cardId)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE
 );
 
 CREATE TABLE Transactions(
-	TransactionId	INTEGER		NOT NULL AUTO_INCREMENT,
-	SellerId	INTEGER,
+	transactionId	INTEGER		NOT NULL AUTO_INCREMENT,
+	sellerId	INTEGER,
 	uid		INTEGER,
-	ItemId		INTEGER,
-	Revenue		DEC(10,2),
-	Timestamp	DATETIME,
-	PRIMARY KEY(TransactionId),
-	FOREIGN KEY(SellerId) REFERENCES Users(uid)
+	itemId		INTEGER,
+	revenue		DEC(10,2),
+	timestamp	DATETIME,
+	PRIMARY KEY(transactionId),
+	FOREIGN KEY(sellerId) REFERENCES Users(uid)
 		ON DELETE NO ACTION,
 	FOREIGN KEY(uid) REFERENCES Users(uid)
 		ON DELETE NO ACTION,
-	FOREIGN KEY(ItemId) REFERENCES Items(ItemId)
+	FOREIGN KEY(itemId) REFERENCES Items(itemId)
 		ON DELETE NO ACTION
 );
 
 CREATE TABLE Ratings(
-	RatingId	INTEGER		NOT NULL AUTO_INCREMENT,
-	RaterId		INTEGER,
-	ItemId		INTEGER,
-	Rating		INTEGER		NOT NULL,
-	CommentText	VARCHAR(300)	NOT NULL,
-	PRIMARY KEY(RatingId),
-	FOREIGN KEY (RaterId) REFERENCES Users(uid),
-	FOREIGN KEY (ItemId) REFERENCES Items(ItemId)
+	ratingId	INTEGER		NOT NULL AUTO_INCREMENT,
+	raterId		INTEGER,
+	itemId		INTEGER,
+	rating		INTEGER		NOT NULL,
+	commentText	VARCHAR(300)	NOT NULL,
+	PRIMARY KEY(ratingId),
+	FOREIGN KEY (raterId) REFERENCES Users(uid),
+	FOREIGN KEY (itemId) REFERENCES Items(itemId)
 );
 
 CREATE TABLE Was_Rated(
 	uid		INTEGER,
-	RatingId	INTEGER,
-	PRIMARY KEY(uid, RatingId),
+	ratingId	INTEGER,
+	PRIMARY KEY(uid, ratingId),
 	FOREIGN KEY(uid) REFERENCES Users(uid)
 		ON DELETE NO ACTION,
-	FOREIGN KEY(RatingId) REFERENCES Ratings(RatingId)
+	FOREIGN KEY(ratingId) REFERENCES Ratings(ratingId)
 		ON DELETE NO ACTION
 );
