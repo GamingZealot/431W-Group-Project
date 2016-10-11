@@ -35,7 +35,7 @@ CREATE TABLE Sellers(
 
 CREATE TABLE Movies(
 	movieId		INTEGER		NOT NULL AUTO_INCREMENT,
-	title		VARCHAR(20)	NOT NULL,
+	title		VARCHAR(50)	NOT NULL,
 	year		INTEGER,
 	synopsis	VARCHAR(500),
 	UNIQUE(title, year),
