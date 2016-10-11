@@ -38,6 +38,7 @@ CREATE TABLE Movies(
 	title		VARCHAR(20)	NOT NULL,
 	year		INTEGER,
 	synopsis	VARCHAR(500),
+	UNIQUE(title, year),
 	PRIMARY KEY(movieId)
 );
 
