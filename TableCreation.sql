@@ -2,16 +2,17 @@
 > mysql -u root -p
 HOW TO: In mysql use command: source <PATH TO THIS FILE>
 To start over use: DROP DATABASE cmpsc431w;
+DESCRIBE <TABLE>;
+SHOW DATABASES;
 */
 
 CREATE DATABASE cmpsc431w;
 USE cmpsc431w;
 
 CREATE TABLE Categories(
-	categoryId	INTEGER		NOT NULL AUTO_INCREMENT, 
+	categoryId	INTEGER		NOT NULL,
 	parentId	INTEGER,
 	categoryName	CHAR(20)	NOT NULL,
-	UNIQUE(categoryName),
 	PRIMARY KEY(categoryId),
 	FOREIGN KEY(parentId) REFERENCES Categories(categoryId)
 );
@@ -59,14 +60,14 @@ CREATE TABLE Is_Movie(
 
 CREATE TABLE Users(
 	uid 		INTEGER		NOT NULL AUTO_INCREMENT,
+	email		VARCHAR(50)	NOT NULL,
 	password	VARCHAR(100)	NOT NULL,
+	name		VARCHAR(50),
 	addressStreet	VARCHAR(50), 
 	addressCity	VARCHAR(50),
 	addressState	VARCHAR(50),	
 	addressZip	VARCHAR(50),
-	email		VARCHAR(50),
-	phone		INTEGER		NOT NULL,
-	name		VARCHAR(50),
+	phone		VARCHAR(20),
 	age		INTEGER,
 	UNIQUE(email),
 	PRIMARY KEY(uid)
