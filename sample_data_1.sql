@@ -155,30 +155,86 @@ INSERT INTO Items (location, description, format) VALUES ("Oklahoma", "This is t
 INSERT INTO Items (location, description, format) VALUES ("Oregon", "great flick good condition", "DVD");
 INSERT INTO Items (location, description, format) VALUES ("Pennsylvania", "Great condition", "DVD");
 INSERT INTO Items (location, description, format) VALUES ("Rhode Island", "", "DVD");
-INSERT INTO Items (location, description, format) VALUES ("", "", "DVD");
-INSERT INTO Items (location, description, format) VALUES ("", "", "DVD");
-INSERT INTO Items (location, description, format) VALUES ("", "", "DVD");
-INSERT INTO Items (location, description, format) VALUES ("", "", "DVD");
-INSERT INTO Items (location, description, format) VALUES ("", "", "DVD");
-INSERT INTO Items (location, description, format) VALUES ("", "", "DVD");
-INSERT INTO Items (location, description, format) VALUES ("", "", "DVD");
-INSERT INTO Items (location, description, format) VALUES ("", "", "DVD");
-INSERT INTO Items (location, description, format) VALUES ("", "", "DVD");
-INSERT INTO Items (location, description, format) VALUES ("", "", "DVD");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+INSERT INTO Items (location, description, format) VALUES ("California", "DVD copy of the movie in good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Alabama", "we don't have electricity in this strange state, not sure why we bought a DVD without a television, good condition never used", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Alaska", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Arizona", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Arkansas", "scratched but plays fine", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("California", "good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Colorado", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Connecticut", "smells funny but plays good", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Delaware", "my dog ate this one, spit it up, and somehow it plays perfectly", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Florida", "it's florida, expect this DVD to have seen some ****", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Georgia", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Hawaii", "lightly used, good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Idaho", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Illinois", "good DVD, plays fine", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Indiana", "runs perfectly", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Iowa", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Kansas", "Scratch on side, still plays", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Kentucky", "great DVD, good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Louisiana", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Maine", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Maryland", "works well", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Massachusetts", "great condition plays well", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Michigan", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Minnesota", "Great movie perfect condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Mississippi", "barely played, new condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Missouri", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Montana", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Nebraska", "lightly used good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Nevada", "never opened", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("New Hampshire", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("New Jersey", "Terrible DVD, perfect condition, watch at your own risk", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("New Mexico", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("New York", "new movie great quality", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("North Carolina", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("North Dakota", "great DVD good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Ohio", "this movie is terrible please take it away from me", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Oklahoma", "This is the movie my ex-wife and I were watching when we first kissed. She's gone now and took the house and the kids with her. If you're reading this Becky, I miss you.", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Oregon", "great flick good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Pennsylvania", "Great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Rhode Island", "", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("California", "DVD copy of the movie in good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Alabama", "we don't have electricity in this strange state, not sure why we bought a DVD without a television, good condition never used", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Alaska", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Arizona", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Arkansas", "scratched but plays fine", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("California", "good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Colorado", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Connecticut", "smells funny but plays good", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Delaware", "my dog ate this one, spit it up, and somehow it plays perfectly", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Florida", "it's florida, expect this DVD to have seen some ****", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Georgia", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Hawaii", "lightly used, good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Idaho", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Illinois", "good DVD, plays fine", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Indiana", "runs perfectly", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Iowa", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Kansas", "Scratch on side, still plays", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Kentucky", "great DVD, good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Louisiana", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Maine", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Maryland", "works well", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Massachusetts", "great condition plays well", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Michigan", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Minnesota", "Great movie perfect condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Mississippi", "barely played, new condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Missouri", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Montana", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Nebraska", "lightly used good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Nevada", "never opened", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("New Hampshire", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("New Jersey", "Terrible DVD, perfect condition, watch at your own risk", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("New Mexico", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("New York", "new movie great quality", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("North Carolina", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("North Dakota", "great DVD good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Ohio", "this movie is terrible please take it away from me", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Oklahoma", "This is the movie my ex-wife and I were watching when we first kissed. She's gone now and took the house and the kids with her. If you're reading this Becky, I miss you.", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Oregon", "great flick good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Pennsylvania", "Great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Rhode Island", "", "DVD");
 
 /* Sellers */
 INSERT INTO Sellers (companyName) VALUES ("");
