@@ -126,7 +126,6 @@ INSERT INTO Is_Seller (uid, sellerId) VALUES (1, 1);
 /* Sold_By */
 INSERT INTO Sold_By (itemId, sellerId) VALUES (1, 1);
 
-
 /* Is_Movie */
 INSERT INTO Is_Movie (itemId, movieId) VALUES (1, 1);
 
