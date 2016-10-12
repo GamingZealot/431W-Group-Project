@@ -113,3 +113,30 @@ INSERT INTO Movies (title, year, synopsis) VALUES ("Se7en", 1995, "Two detective
 INSERT INTO Movies (title, year, synopsis) VALUES ("The Silence of the Lambs", 1991, "A young F.B.I. cadet must confide in an incarcerated and manipulative killer to receive his help on catching another serial killer who skins his victims.");
 INSERT INTO Movies (title, year, synopsis) VALUES ("It's a Wonderful Life", 1946, "An angel helps a compassionate but despairingly frustrated businessman by showing what life would have been like if he never existed.");
 INSERT INTO Movies (title, year, synopsis) VALUES ("The Usual Suspects", 1995, "A sole survivor tells of the twisty events leading up to a horrific gun battle on a boat, which begin when five criminals meet at a seemingly random police lineup.");
+
+/* Items */
+INSERT INTO Items (location, description, format) VALUES ("California", "DVD copy of the movie in good condition", "DVD");
+
+/* Sellers */
+INSERT INTO Sellers (companyName) VALUES ("");
+
+/* Is_Seller */
+INSERT INTO Is_Seller (uid, sellerId) VALUES (1, 1);
+
+/* Sold_By */
+INSERT INTO Sold_By (itemId, sellerId) VALUES (1, 1);
+
+/* Is_Movie */
+INSERT INTO Is_Movie (itemId, movieId) VALUES (1, 1);
+
+/* SaleItems */
+INSERT INTO SaleItems (stock, price, itemId) VALUES (2, 10.50, 1);
+
+/* Auctionitems */
+INSERT INTO AuctionItems (endTime, currentBid, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 1);
+
+/* Ratings */
+INSERT INTO Ratings (raterId, itemId, rating, commentText) VALUES (1, 1, 2, "This guy was lame.");
+
+/* Was_Rated */
+INSERT INTO Was_Rated (sellerId, ratingId) VALUES (1, 1);

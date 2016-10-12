@@ -19,6 +19,7 @@ CREATE TABLE Categories(
 
 CREATE TABLE Items(
 	itemId		INTEGER		NOT NULL AUTO_INCREMENT,
+	format		VARCHAR(20),
 	location	CHAR(40), 
 	description	CHAR(100),
 	PRIMARY KEY(itemId) 
@@ -53,7 +54,6 @@ CREATE TABLE Categorized_as(
 CREATE TABLE Is_Movie(
 	itemId		INTEGER		NOT NULL,
 	movieId		INTEGER		NOT NULL,
-	format		VARCHAR(20),
 	PRIMARY KEY(itemId, movieId),
 	FOREIGN KEY(itemId) REFERENCES Items(itemId),
 	FOREIGN KEY(movieId) REFERENCES Movies(movieId)
@@ -92,19 +92,19 @@ CREATE TABLE Is_Seller(
 
 CREATE TABLE SaleItems(
 	stock 		INTEGER		NOT NULL,
-	irice		REAL		NOT NULL,
+	price		REAL		NOT NULL,
 	itemId		INTEGER,
 	FOREIGN KEY(itemId) REFERENCES Sold_By(itemId)
 );
 
 CREATE TABLE RentableItems(
-	RentPrice	REAL		NOT NULL,
-	ItemId		INTEGER,
-	FOREIGN KEY(ItemId) REFERENCES Sold_By(ItemId)
+	rentPrice	REAL		NOT NULL,
+	itemId		INTEGER,
+	FOREIGN KEY(itemId) REFERENCES Sold_By(itemId)
 );
 
 CREATE TABLE AuctionItems(
-	endTime 	DATE		NOT NULL,
+	endTime 	DATETIME	NOT NULL,
 	currentBid	REAL		NOT NULL,
 	itemId		INTEGER,
 	FOREIGN KEY(itemId) REFERENCES Sold_By(itemId)
@@ -159,10 +159,10 @@ CREATE TABLE Ratings(
 );
 
 CREATE TABLE Was_Rated(
-	uid		INTEGER,
+	sellerId	INTEGER,
 	ratingId	INTEGER,
-	PRIMARY KEY(uid, ratingId),
-	FOREIGN KEY(uid) REFERENCES Users(uid)
+	PRIMARY KEY(sellerId, ratingId),
+	FOREIGN KEY(sellerId) REFERENCES Sellers(sellerId)
 		ON DELETE NO ACTION,
 	FOREIGN KEY(ratingId) REFERENCES Ratings(ratingId)
 		ON DELETE NO ACTION
