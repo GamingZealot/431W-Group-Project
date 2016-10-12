@@ -256,8 +256,56 @@ INSERT INTO Is_Movie (itemId, movieId) VALUES (1, 1);
 INSERT INTO SaleItems (stock, price, itemId) VALUES (2, 10.50, 1);
 
 /* Auctionitems */
-INSERT INTO AuctionItems (endTime, currentBid, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 1);
-
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-20 00:00:00', 5.00, 3.50, 51);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 52);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-10 00:00:00', 5.00, 3.50, 53);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-15 00:00:00', 5.00, 3.50, 54);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-25 00:00:00', 5.00, 3.50, 55);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-25 00:00:00', 5.00, 3.50, 56);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 57);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-35 00:00:00', 5.00, 3.50, 58);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-15 00:00:00', 5.00, 3.50, 59);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 60);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-2 00:00:00', 5.00, 3.50, 61);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-9 00:00:00', 5.00, 3.50, 62);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-10 00:00:00', 5.00, 3.50, 63);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-12 00:00:00', 5.00, 3.50, 64);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-19 00:00:00', 5.00, 3.50, 65);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-25 00:00:00', 5.00, 3.50, 66);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 67);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 68);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-10 00:00:00', 5.00, 3.50, 69);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-25 00:00:00', 5.00, 3.50, 70);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 71);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-11 00:00:00', 5.00, 3.50, 72);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-3 00:00:00', 5.00, 3.50, 73);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 74);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 75);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-15 00:00:00', 5.00, 3.50, 76);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-25 00:00:00', 5.00, 3.50, 77);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 78);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 79);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-9 00:00:00', 5.00, 3.50, 80);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 81);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-27 00:00:00', 5.00, 3.50, 82);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 83);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 84);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 85);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-24 00:00:00', 5.00, 3.50, 86);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 87);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-8 00:00:00', 5.00, 3.50, 88);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-13 00:00:00', 5.00, 3.50, 89);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 90);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 91);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-15 00:00:00', 5.00, 3.50, 92);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-3 00:00:00', 5.00, 3.50, 93);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-25 00:00:00', 5.00, 3.50, 94);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 95);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-14 00:00:00', 5.00, 3.50, 96);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 97);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-22 00:00:00', 5.00, 3.50, 98);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 99);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-23 00:00:00', 5.00, 3.50, 100);
 /* Ratings */
 INSERT INTO Ratings (raterId, itemId, rating, commentText) VALUES (1, 1, 2, "This guy was lame.");
 
