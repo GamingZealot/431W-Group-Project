@@ -2,31 +2,19 @@
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "john.doe@psu.edu", "c11083b4b0a7743af748c85d343dfee9fbb8b2576c05f3a7f0d626aadfc", "John Doe", "1 E. College Ave.", "State College", "Pennsylvania", "16801", "111-111-1111", 50);
 
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "jane.doe@psu.edu", "630bf032efe4507f2c57b280995925a9", "Jane Doe", "2 E. College Ave.", "State College", "Pennsylvania", "16801", "111-111-2222", 48);
-
+/* Users */
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "chris.carney@psu.edu", "c11083b4b0a7743af748c85d343dfee9fbb8b2576c05f3a7f0d632b6aad", "Chris Carney", "3 E. College Ave.", "State College", "Pennsylvania", "16801", "111-111-3333", 21);
-
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "pat.colville@psu.edu", "5206b8b8a996cf5320cb12ca91c7b790fba9f030408efe83ebb48dc3007bd", "Pat Colville", "4 E. College Ave.", "State College", "Pennsylvania", "16801", "111-111-4444", 21);
-
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "charles.desanno@psu.edu", "e4ba5cbd251c98e6cd1c23f126a3b81d8d8328abc95387220952b3ef9f", "Charles De Sanno", "5 E. College Ave.", "State College", "Pennsylvania", "16801", "111-122-4444", 21);
-
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "michael.norris@psu.edu", "d5ec75d5fe70d428685510fae36492d9", "Michael Norris", "6 E. College Ave.", "State College", "Pennsylvania", "16801", "111-122-4344", 21);
-
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "nicholas.lysowski@psu.edu", "386f43fab5d096a7a66d67c8f213e5ec", "Nicholas Lysowski", "7 E. College Ave.", "State College", "Pennsylvania", "16801", "311-122-4344", 21);
-
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "vince.landis@psu.edu", "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e730433629", "Vince Landis", "8 E. College Ave.", "State College", "Pennsylvania", "16801", "341-122-4344", 21);
-
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "Ryan.Smith@psu.edu", "2546f54dd30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824", "Ryan Smith", "9 E. College Ave.", "State College", "Pennsylvania", "16801", "371-152-4344", 45);
-
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "Kelly.Smith@psu.edu", "a49670c3c18b9e079b9cfaf51634f563dc8ae3070db2c4a8544305df1b6", "Kelly Smith", "10 E. College Ave.", "State College", "Pennsylvania", "16801", "373-152-4344", 43);
-
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "Tim.smith@psu.edu", "d1d3ec2e6f20fd420d50e2642992841d8338a314b8ea157c9e18477aaef226ab", "Tim Smith", "11 E. College Ave.", "State College", "Pennsylvania", "16801", "353-102-4344", 30);
-
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "tom.johnson@psu.edu", "d1d3ec2e6f20fd420d50e2642992841d8338a314b8ea157c9e18477aaef", "tom johnson", "12 E. College Ave.", "State College", "Pennsylvania", "16801", "343-102-4348", 34);
-
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "linda.johnson@psu.edu", "9e209040c863f84a31e719795b2577523954739fe5ed3b58a75cff21270", "linda johnson", "12 E. College Ave.", "State College", "Pennsylvania", "16801", "400-102-4348", 35);
-
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "abe.lincoln@psu.edu", "c0e81794384491161f1777c232bc6bd9ec38f616560b120fda8e90f383", "abraham lincoln", "13 E. College Ave.", "State College", "Pennsylvania", "16801", "500-102-4348", 54);
-
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "tyler.jones@psu.edu", "f1777c232bc6bd9ec38f616560b120fda8e90f3838535", "Tyler Jones", "14 E. College Ave.", "State College", "Pennsylvania", "16801", "450-102-4348", 32);
 
 /* Categories */
@@ -155,30 +143,86 @@ INSERT INTO Items (location, description, format) VALUES ("Oklahoma", "This is t
 INSERT INTO Items (location, description, format) VALUES ("Oregon", "great flick good condition", "DVD");
 INSERT INTO Items (location, description, format) VALUES ("Pennsylvania", "Great condition", "DVD");
 INSERT INTO Items (location, description, format) VALUES ("Rhode Island", "", "DVD");
-INSERT INTO Items (location, description, format) VALUES ("", "", "DVD");
-INSERT INTO Items (location, description, format) VALUES ("", "", "DVD");
-INSERT INTO Items (location, description, format) VALUES ("", "", "DVD");
-INSERT INTO Items (location, description, format) VALUES ("", "", "DVD");
-INSERT INTO Items (location, description, format) VALUES ("", "", "DVD");
-INSERT INTO Items (location, description, format) VALUES ("", "", "DVD");
-INSERT INTO Items (location, description, format) VALUES ("", "", "DVD");
-INSERT INTO Items (location, description, format) VALUES ("", "", "DVD");
-INSERT INTO Items (location, description, format) VALUES ("", "", "DVD");
-INSERT INTO Items (location, description, format) VALUES ("", "", "DVD");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+INSERT INTO Items (location, description, format) VALUES ("California", "DVD copy of the movie in good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Alabama", "we don't have electricity in this strange state, not sure why we bought a DVD without a television, good condition never used", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Alaska", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Arizona", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Arkansas", "scratched but plays fine", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("California", "good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Colorado", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Connecticut", "smells funny but plays good", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Delaware", "my dog ate this one, spit it up, and somehow it plays perfectly", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Florida", "it's florida, expect this DVD to have seen some ****", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Georgia", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Hawaii", "lightly used, good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Idaho", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Illinois", "good DVD, plays fine", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Indiana", "runs perfectly", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Iowa", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Kansas", "Scratch on side, still plays", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Kentucky", "great DVD, good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Louisiana", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Maine", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Maryland", "works well", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Massachusetts", "great condition plays well", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Michigan", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Minnesota", "Great movie perfect condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Mississippi", "barely played, new condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Missouri", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Montana", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Nebraska", "lightly used good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Nevada", "never opened", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("New Hampshire", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("New Jersey", "Terrible DVD, perfect condition, watch at your own risk", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("New Mexico", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("New York", "new movie great quality", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("North Carolina", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("North Dakota", "great DVD good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Ohio", "this movie is terrible please take it away from me", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Oklahoma", "This is the movie my ex-wife and I were watching when we first kissed. She's gone now and took the house and the kids with her. If you're reading this Becky, I miss you.", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Oregon", "great flick good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Pennsylvania", "Great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Rhode Island", "", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("California", "DVD copy of the movie in good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Alabama", "we don't have electricity in this strange state, not sure why we bought a DVD without a television, good condition never used", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Alaska", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Arizona", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Arkansas", "scratched but plays fine", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("California", "good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Colorado", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Connecticut", "smells funny but plays good", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Delaware", "my dog ate this one, spit it up, and somehow it plays perfectly", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Florida", "it's florida, expect this DVD to have seen some ****", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Georgia", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Hawaii", "lightly used, good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Idaho", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Illinois", "good DVD, plays fine", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Indiana", "runs perfectly", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Iowa", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Kansas", "Scratch on side, still plays", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Kentucky", "great DVD, good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Louisiana", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Maine", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Maryland", "works well", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Massachusetts", "great condition plays well", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Michigan", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Minnesota", "Great movie perfect condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Mississippi", "barely played, new condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Missouri", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Montana", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Nebraska", "lightly used good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Nevada", "never opened", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("New Hampshire", "fine condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("New Jersey", "Terrible DVD, perfect condition, watch at your own risk", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("New Mexico", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("New York", "new movie great quality", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("North Carolina", "great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("North Dakota", "great DVD good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Ohio", "this movie is terrible please take it away from me", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Oklahoma", "This is the movie my ex-wife and I were watching when we first kissed. She's gone now and took the house and the kids with her. If you're reading this Becky, I miss you.", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Oregon", "great flick good condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Pennsylvania", "Great condition", "DVD");
+INSERT INTO Items (location, description, format) VALUES ("Rhode Island", "", "DVD");
 
 /* Sellers */
 INSERT INTO Sellers (companyName) VALUES ("");
@@ -458,6 +502,56 @@ INSERT INTO SaleItems (stock, price, itemId) VALUES (1, 10.50, 50);
 
 /* Auctionitems */
 INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.00, 1);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-20 00:00:00', 5.00, 3.50, 51);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 52);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-10 00:00:00', 5.00, 3.50, 53);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-15 00:00:00', 5.00, 3.50, 54);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-25 00:00:00', 5.00, 3.50, 55);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-25 00:00:00', 5.00, 3.50, 56);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 57);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-35 00:00:00', 5.00, 3.50, 58);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-15 00:00:00', 5.00, 3.50, 59);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 60);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-2 00:00:00', 5.00, 3.50, 61);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-9 00:00:00', 5.00, 3.50, 62);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-10 00:00:00', 5.00, 3.50, 63);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-12 00:00:00', 5.00, 3.50, 64);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-19 00:00:00', 5.00, 3.50, 65);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-25 00:00:00', 5.00, 3.50, 66);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 67);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 68);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-10 00:00:00', 5.00, 3.50, 69);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-25 00:00:00', 5.00, 3.50, 70);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 71);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-11 00:00:00', 5.00, 3.50, 72);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-3 00:00:00', 5.00, 3.50, 73);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 74);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 75);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-15 00:00:00', 5.00, 3.50, 76);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-25 00:00:00', 5.00, 3.50, 77);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 78);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 79);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-9 00:00:00', 5.00, 3.50, 80);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 81);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-27 00:00:00', 5.00, 3.50, 82);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 83);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 84);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 85);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-24 00:00:00', 5.00, 3.50, 86);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 87);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-8 00:00:00', 5.00, 3.50, 88);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-13 00:00:00', 5.00, 3.50, 89);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 90);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 91);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-15 00:00:00', 5.00, 3.50, 92);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-3 00:00:00', 5.00, 3.50, 93);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-25 00:00:00', 5.00, 3.50, 94);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 95);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-14 00:00:00', 5.00, 3.50, 96);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 97);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-22 00:00:00', 5.00, 3.50, 98);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 99);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-23 00:00:00', 5.00, 3.50, 100);
 
 /* Ratings */
 INSERT INTO Ratings (raterId, itemId, rating, commentText) VALUES (7, 51, 2, "This guy was lame.");
