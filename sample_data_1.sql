@@ -237,7 +237,6 @@ INSERT INTO Sellers (companyName) VALUES ("VHS Only Mega-Outlet");
 INSERT INTO Is_Seller (uid, sellerId) VALUES (1, 1);
 INSERT INTO Is_Seller (uid, sellerId) VALUES (2, 2);
 INSERT INTO Is_Seller (uid, sellerId) VALUES (3, 3);
-INSERT INTO Is_Seller (uid, sellerId) VALUES (3, 3);
 INSERT INTO Is_Seller (uid, sellerId) VALUES (4, 4);
 INSERT INTO Is_Seller (uid, sellerId) VALUES (5, 5);
 INSERT INTO Is_Seller (uid, sellerId) VALUES (6, 6);
@@ -509,7 +508,7 @@ INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('20
 INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-25 00:00:00', 5.00, 3.50, 55);
 INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-25 00:00:00', 5.00, 3.50, 56);
 INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 57);
-INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-35 00:00:00', 5.00, 3.50, 58);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-25 00:00:00', 5.00, 3.50, 58);
 INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-15 00:00:00', 5.00, 3.50, 59);
 INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 60);
 INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-2 00:00:00', 5.00, 3.50, 61);

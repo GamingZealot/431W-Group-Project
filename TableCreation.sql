@@ -12,7 +12,7 @@ USE cmpsc431w;
 CREATE TABLE Categories(
 	categoryId	INTEGER		NOT NULL,
 	parentId	INTEGER,
-	categoryName	CHAR(20)	NOT NULL,
+	categoryName	VARCHAR(20)	NOT NULL,
 	PRIMARY KEY(categoryId),
 	FOREIGN KEY(parentId) REFERENCES Categories(categoryId)
 );
@@ -20,8 +20,8 @@ CREATE TABLE Categories(
 CREATE TABLE Items(
 	itemId		INTEGER		NOT NULL AUTO_INCREMENT,
 	format		VARCHAR(20),
-	location	CHAR(40), 
-	description	CHAR(100),
+	location	VARCHAR(40), 
+	description	VARCHAR(500),
 	PRIMARY KEY(itemId) 
 );
 
