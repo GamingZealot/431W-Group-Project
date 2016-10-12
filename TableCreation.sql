@@ -106,6 +106,7 @@ CREATE TABLE RentableItems(
 CREATE TABLE AuctionItems(
 	endTime 	DATETIME	NOT NULL,
 	currentBid	REAL		NOT NULL,
+	reservePrice	REAL		NOT NULL,
 	itemId		INTEGER,
 	FOREIGN KEY(itemId) REFERENCES Sold_By(itemId)
 );

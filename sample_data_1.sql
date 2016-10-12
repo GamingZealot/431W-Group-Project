@@ -126,6 +126,7 @@ INSERT INTO Is_Seller (uid, sellerId) VALUES (1, 1);
 /* Sold_By */
 INSERT INTO Sold_By (itemId, sellerId) VALUES (1, 1);
 
+
 /* Is_Movie */
 INSERT INTO Is_Movie (itemId, movieId) VALUES (1, 1);
 
@@ -133,7 +134,7 @@ INSERT INTO Is_Movie (itemId, movieId) VALUES (1, 1);
 INSERT INTO SaleItems (stock, price, itemId) VALUES (2, 10.50, 1);
 
 /* Auctionitems */
-INSERT INTO AuctionItems (endTime, currentBid, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 1);
+INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.00, 1);
 
 /* Ratings */
 INSERT INTO Ratings (raterId, itemId, rating, commentText) VALUES (1, 1, 2, "This guy was lame.");
