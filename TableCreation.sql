@@ -28,9 +28,7 @@ CREATE TABLE Items(
 CREATE TABLE Sellers(
 	sellerId	INTEGER		NOT NULL AUTO_INCREMENT,
 	companyName	VARCHAR(100), 
-	/*revenue	DEC(10,2),	Aren't these things we can just get using Ratings
-	ratingAvg	FLOAT(3,1),	and transactions table?
-	totalRatings	INTEGER,*/
+	revenue	DEC(10,2),
 	PRIMARY KEY(sellerId)
 );
 
@@ -70,6 +68,8 @@ CREATE TABLE Users(
 	addressZip	VARCHAR(50),
 	phone		VARCHAR(20),
 	age		INTEGER,
+	ratingAvg	FLOAT(3,1),
+	totalRatings	INTEGER,
 	UNIQUE(email),
 	PRIMARY KEY(uid)
 );
