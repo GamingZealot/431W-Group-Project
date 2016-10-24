@@ -3,7 +3,7 @@ $host = "localhost";
 
 $user = "root";
 
-$pass = "Dudio10";
+$pass = "your password";
 
 $db   = "cmpsc431w";
 
