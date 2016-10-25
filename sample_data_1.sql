@@ -1,8 +1,6 @@
-/* Users */
+﻿/* Users */
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "john.doe@psu.edu", "c11083b4b0a7743af748c85d343dfee9fbb8b2576c05f3a7f0d626aadfc", "John Doe", "1 E. College Ave.", "State College", "Pennsylvania", "16801", "111-111-1111", 50);
-
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "jane.doe@psu.edu", "630bf032efe4507f2c57b280995925a9", "Jane Doe", "2 E. College Ave.", "State College", "Pennsylvania", "16801", "111-111-2222", 48);
-/* Users */
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "chris.carney@psu.edu", "c11083b4b0a7743af748c85d343dfee9fbb8b2576c05f3a7f0d632b6aad", "Chris Carney", "3 E. College Ave.", "State College", "Pennsylvania", "16801", "111-111-3333", 21);
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "pat.colville@psu.edu", "5206b8b8a996cf5320cb12ca91c7b790fba9f030408efe83ebb48dc3007bd", "Pat Colville", "4 E. College Ave.", "State College", "Pennsylvania", "16801", "111-111-4444", 21);
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "charles.desanno@psu.edu", "e4ba5cbd251c98e6cd1c23f126a3b81d8d8328abc95387220952b3ef9f", "Charles De Sanno", "5 E. College Ave.", "State College", "Pennsylvania", "16801", "111-122-4444", 21);
@@ -48,38 +46,6 @@ INSERT INTO Categories (categoryId, parentId, categoryName) VALUES (27, 5, "Docu
 INSERT INTO Categories (categoryId, parentId, categoryName) VALUES (28, 5, "Drama");
 INSERT INTO Categories (categoryId, parentId, categoryName) VALUES (29, 5, "Romance");
 INSERT INTO Categories (categoryId, parentId, categoryName) VALUES (30, 5, "Sc-Fi");
-
-/* Categories - Items relationships */
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (1, 1);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (2, 2);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (3, 3);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (4, 4);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (5, 5);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (6, 6);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (7, 7);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (8, 8);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (9, 9);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (10, 10);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (11, 11);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (12, 12);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (13, 13);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (14, 14);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (15, 15);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (16, 16);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (17, 17);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (18, 18);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (19, 19);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (20, 20);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (21, 21);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (22, 22);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (23, 23);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (24, 24);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (25, 25);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (26, 26);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (27, 27);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (28, 28);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (29, 29);
-INSERT INTO Categorized_as (itemId, categoryId) VALUES (30, 30);
 
 /* Movies to sell */
 INSERT INTO Movies (title, year, synopsis) VALUES ("Aliens", 1979, "After a space merchant vessel perceives an unknown transmission as distress call, their landing on the source moon finds one of the crew attacked by a mysterious lifeform. Continuing their journey back to Earth with the attacked crew having recovered and the critter deceased, they soon realize that its life cycle has merely begun.");
@@ -597,3 +563,35 @@ INSERT INTO Was_Rated (sellerId, ratingId) VALUES (2, 2);
 INSERT INTO Was_Rated (sellerId, ratingId) VALUES (3, 3);
 INSERT INTO Was_Rated (sellerId, ratingId) VALUES (4, 4);
 INSERT INTO Was_Rated (sellerId, ratingId) VALUES (5, 5);
+
+/* Categories - Items relationships */
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (1, 1);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (2, 2);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (3, 3);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (4, 4);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (5, 5);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (6, 6);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (7, 7);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (8, 8);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (9, 9);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (10, 10);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (11, 11);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (12, 12);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (13, 13);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (14, 14);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (15, 15);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (16, 16);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (17, 17);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (18, 18);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (19, 19);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (20, 20);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (21, 21);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (22, 22);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (23, 23);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (24, 24);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (25, 25);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (26, 26);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (27, 27);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (28, 28);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (29, 29);
+INSERT INTO Categorized_as (itemId, categoryId) VALUES (30, 30);
