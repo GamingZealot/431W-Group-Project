@@ -1,9 +1,8 @@
-<?php
 $host = "localhost";
 
 $user = "root";
 
-$pass = "cheese";
+$pass = "your password";
 
 $db   = "cmpsc431w";
 
@@ -18,12 +17,12 @@ if (!$r) {
 
 } else {
 	
-//echo "Connection established<br/>";
+echo "Connection established<br/>";
 
 }
 
 
-//echo mysql_get_server_info() . "<br/><br/>";
+echo mysql_get_server_info() . "<br/><br/>";
 
 $r2 = mysql_select_db($db);
 
@@ -40,7 +39,8 @@ $rs = mysql_query($query);
 
 echo "<TABLE border = 1>";
 
-echo "<tr><td>itemId</td><td>title</td><td>price</td><td>seller</td><td>category</td></tr>"; 
+echo "<tr><td>itemId</td><td>title</td><td>price</td><td>seller</td><td>category</td></tr>";
+
 
 while ($row = mysql_fetch_assoc($rs)) {
 	
@@ -48,7 +48,7 @@ echo "<tr>";
 
 echo 	"<td>" . $row['itemId'] . "</td>" .	
 	"<td>" . $row['title'] . "</td>" .	
-	"<td>$" . $row['price'] . "</td>" .
+	"<td>" . $row['price'] . "</td>" .
 	
 	"<td>" . $row['name'] . "</td>".
 	
@@ -66,3 +66,4 @@ mysql_close();
 
 
 ?>
+>>>>>>> 2e1115ace2c7c1f6ea162b98b3b8505dd170dd56:Presentation Code.php
