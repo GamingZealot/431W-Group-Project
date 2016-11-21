@@ -1,0 +1,103 @@
+<html>
+	<head>
+		<img width="350" height="60" src="images/banner.png"/><br/>
+		<style type="text/css">	
+		body
+		{
+			padding: 0;
+			margin: 0;
+		}
+		#item-preview
+		{
+			height: 50%;
+			width: 30%;
+			float: left;
+			text-align: center;
+		}
+		#item-purchase-info
+		{
+			width: 70%;
+			float: right;
+		}
+		.purchase-details
+		{
+			height: 100px;
+			width: 400px;
+			background: red;
+			padding: 10px;
+		}
+		#purchasing-options
+		{
+			float: left;
+		}
+		#seller-info
+		{
+			float: left;
+			width: 50%;
+			text-align: center;
+		}
+		.clearboth
+		{
+			clear: both;
+		}
+		footer
+		{
+			padding: 10px;
+		}
+		</style>
+	</head>
+	<body>
+		<a href="">&#8592;Back to search results</a><br/>
+		<div id="item-preview">
+			<img src="http://i.ebayimg.com/00/$T2eC16ZHJIEFHRr5RCt!BS!h,kG0y!~~_35.JPG?set_id=89040003C1"/>
+		</div>
+		<div id="item-purchase-info">
+			<strong id="item-title">Star Wars Episode III: Revenge of the Sith</strong><br/><br/>
+
+			<div id="purchasing-options">
+				<div id="buying-details" class="purchase-details">
+					Buy it now!<br/>
+					Price: <label class="price-label"></label><br/>
+					<button>Buy this item</button>
+				</div>
+				<br/>
+				<div id="auction-details" class="purchase-details">
+					Place a new bid<br/>
+					Current bid: <label class="price-label"></label><br/>
+					<input type="text"/><br/>
+					<button>Place bid</button>
+				</div>
+				<br/>
+				<div id="renting-details" class="purchase-details">
+					Available for rent<br/>
+					Price: <label class="price-label"></label><br/>
+					<button>Rent now</button>
+				</div>
+			</div>
+			<div id="seller-info">
+				Seller Information<br/><br/>
+				Name: <label id="seller-name"></label><br/>
+				Address: <label id="seller-address"></label><br/>
+			</div>
+		</div>
+		<br class="clearboth"/>
+  		<p><font size="2px"> Site created by HelloWorld </font></p>
+  		<p>
+  			<font size="2px">
+  				Contact information: 
+  				<a href="mailto:support@helloword.com">support@helloworld.com</a>.
+  			</font>
+  		</p>
+	</body>
+
+  	<script>
+  		var prices = document.getElementsByClassName("price-label");
+
+  		for (var i = 0; i < prices.length; i++)
+  		{
+  			prices[i].innerHTML = "$599.39";
+  		}
+
+  	</script>
+
+</html>
