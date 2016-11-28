@@ -1,16 +1,28 @@
 <html>
 	<head>
-		<img width="350" height="60" src="images/banner.png"/><br/>
-		<style type="text/css">	
+		<img width="350" height="60" src="../images/banner.png"/><br/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<style type="text/css">
 		body
 		{
 			padding: 0;
 			margin: 0;
 		}
+		.title
+		{
+			font-size: 18px;
+		}
+		#head-spacer
+		{
+			padding: 10px;
+		}
 		#item-preview
 		{
-			height: 50%;
-			width: 30%;
+			height: 46%;
+			width: 26%;
+			margin: 2%;
+			background-color: #EEEEEE;
 			float: left;
 			text-align: center;
 		}
@@ -21,7 +33,6 @@
 		}
 		.purchase-details
 		{
-			height: 100px;
 			width: 400px;
 			background: red;
 			padding: 10px;
@@ -34,69 +45,128 @@
 		{
 			float: left;
 			width: 50%;
+			padding-left: 30px;
 			text-align: center;
+		}
+		.specifics
+		{
+			text-align: left;
+		}
+		#movie-description
+		{
+			height: 200px;
+			margin: 10px;
+			padding: 10px;
+			background: #EEEEEE;
+			text-align: center; 
 		}
 		.clearboth
 		{
 			clear: both;
 		}
-		footer
+		#footer
 		{
 			padding: 10px;
 		}
 		</style>
 	</head>
 	<body>
-		<a href="">&#8592;Back to search results</a><br/>
+		<div id="head-spacer">
+			<a href="home.php">&#8592;Back to search results</a><br/>
+		</div>
 		<div id="item-preview">
 			<img src="http://i.ebayimg.com/00/$T2eC16ZHJIEFHRr5RCt!BS!h,kG0y!~~_35.JPG?set_id=89040003C1"/>
 		</div>
 		<div id="item-purchase-info">
-			<strong id="item-title">Star Wars Episode III: Revenge of the Sith</strong><br/><br/>
+			<strong class="title item-title"></strong><br/><br/>
 
 			<div id="purchasing-options">
 				<div id="buying-details" class="purchase-details">
 					Buy it now!<br/>
 					Price: <label class="price-label"></label><br/>
-					<button>Buy this item</button>
+					Stock: <label class="stock-label"></label><br/>
+					<button onclick="alert('nahhhh')">Buy this item</button>
 				</div>
 				<br/>
 				<div id="auction-details" class="purchase-details">
 					Place a new bid<br/>
 					Current bid: <label class="price-label"></label><br/>
-					<input type="text"/><br/>
-					<button>Place bid</button>
+					<input type="text" id="newBidArea"/><br/>
+					<button onclick="alert('nahhhh')">Place bid</button>
+					<br/>
+					Auction ends at <label class="ending-time"></label><br/>
+					Time remaining: <label class="remaining-time"></label>
 				</div>
 				<br/>
 				<div id="renting-details" class="purchase-details">
-					Available for rent<br/>
+					Available for rent!<br/>
 					Price: <label class="price-label"></label><br/>
-					<button>Rent now</button>
+					<button onclick="alert('nahhhh')">Rent now</button>
 				</div>
 			</div>
 			<div id="seller-info">
-				Seller Information<br/><br/>
-				Name: <label id="seller-name"></label><br/>
-				Address: <label id="seller-address"></label><br/>
+				<strong class="title">Seller Information</strong><br/><br/>
+				<div class="specifics">
+					Name: <label id="seller-name"></label><br/>
+					Location: <label id="seller-location"></label><br/>
+					Seller rating: <label id="seler-rating"></label><br/>
+				</div>
 			</div>
 		</div>
 		<br class="clearboth"/>
-  		<p><font size="2px"> Site created by HelloWorld </font></p>
-  		<p>
-  			<font size="2px">
-  				Contact information: 
-  				<a href="mailto:support@helloword.com">support@helloworld.com</a>.
-  			</font>
-  		</p>
+		<div id="movie-description">
+			<strong class="title">Item description</strong><br/>
+			<div class="specifics">
+				Title: <label class="item-title"></label><br/>
+				Year: <label class="item-year"></label><br/>
+				Synopsis: <label class="item-synopsis"></label><br>
+			</div>
+
+		</div>
+		<br class="clearboth"/>
+  		<div id="footer">
+	  		<p><font size="2px"> Site created by HelloWorld </font></p>
+	  		<p>
+	  			<font size="2px">
+	  				Contact information: 
+	  				<a href="mailto:support@helloworld.com">support@helloworld.com</a>.
+	  			</font>
+	  		</p>
+	  	</div>
 	</body>
 
   	<script>
   		var prices = document.getElementsByClassName("price-label");
+  		
+  		var dfData = {
+  			title: "Star Wars Episode III: Revenge of the Sith",
+  			price: 599,
+  			stock: 3,
+  			year: 2002,
+  			synopsis: "It has been three years since the Clone Wars began. Jedi Master Obi-Wan Kenobi (Ewan McGregor) and Jedi Knight Anakin Skywalker (Hayden Christensen) rescue Chancellor Palpatine (Ian McDiarmid) from General Grievous, the commander of the droid armies, but Grievous escapes. Suspicions are raised within the Jedi Council concerning Chancellor Palpatine, with whom Anakin has formed a bond. Asked to spy on the chancellor, and full of bitterness toward the Jedi Council, Anakin embraces the Dark Side.",
+  			sRating: 98,
+  			sLocation: "Las Vegas, Nevada",
+  			BuyAucRnt: [true, true, true],
+  			endTime: "2024.11.08.23.09"
+  		}
 
   		for (var i = 0; i < prices.length; i++)
   		{
-  			prices[i].innerHTML = "$599.39";
+  			prices[i].innerHTML = "$" + Math.floor(dfData.price - (i * 250)) + ".99";
+  			if (i == 1)
+				document.getElementById("newBidArea").placeholder = "$" + Math.floor(dfData.price - (i * 250) + 2) + ".00 or higher";
   		}
+
+  		document.addEventListener("DOMContentLoaded", function()
+  		{
+  			$(".item-title").html(dfData.title);
+  			$(".stock-label").html(dfData.stock);
+  			$(".item-year").html(dfData.year);
+  			$(".item-synopsis").html(dfData.synopsis);
+
+  			$(".ending-time").html(dfData.endTime);
+  			$(".remaining-time").html("323,902.1 hours");
+  		});
 
   	</script>
 
