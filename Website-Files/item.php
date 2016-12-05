@@ -1,3 +1,21 @@
+<?php
+ 	$db = mysqli_connect('localhost','root','Dudio10','cmpsc431w')
+ 	or die('Error connecting to MySQL server.');
+
+ 	$mid = $_GET['mid'];
+	$iid = $_GET['iid'];
+
+// find movie corresponding to movie id
+// TODO: handle erroneous movie IDs
+	$query = "SELECT *
+              FROM Movies
+              WHERE movieId = " . $mid . " ";
+
+	mysqli_query($db, $query) or die('Error querying movies database.');
+	$result = mysqli_query($db, $query);
+	$movie = mysqli_fetch_array($result);
+?>
+
 <html>
 	<head>
 		<img width="350" height="60" src="../images/banner.png"/><br/>
@@ -33,6 +51,7 @@
 		}
 		.purchase-details
 		{
+			display: none;
 			width: 400px;
 			background: red;
 			padding: 10px;
@@ -85,14 +104,14 @@
 					Buy it now!<br/>
 					Price: <label class="price-label"></label><br/>
 					Stock: <label class="stock-label"></label><br/>
-					<button onclick="alert('nahhhh')">Buy this item</button>
+					<button onclick="alert('purchased')">Buy this item</button>
 				</div>
 				<br/>
 				<div id="auction-details" class="purchase-details">
 					Place a new bid<br/>
 					Current bid: <label class="price-label"></label><br/>
 					<input type="text" id="newBidArea"/><br/>
-					<button onclick="alert('nahhhh')">Place bid</button>
+					<button onclick="alert('Bid placed')">Place bid</button>
 					<br/>
 					Auction ends at <label class="ending-time"></label><br/>
 					Time remaining: <label class="remaining-time"></label>
@@ -101,7 +120,7 @@
 				<div id="renting-details" class="purchase-details">
 					Available for rent!<br/>
 					Price: <label class="price-label"></label><br/>
-					<button onclick="alert('nahhhh')">Rent now</button>
+					<button onclick="alert('Rent complete')">Rent now</button>
 				</div>
 			</div>
 			<div id="seller-info">
@@ -136,6 +155,10 @@
 	</body>
 
   	<script>
+  		var forSale, forAuction, forRent;
+
+  		forSale = forAuction = forRent = false;
+
   		var prices = document.getElementsByClassName("price-label");
   		
   		var dfData = {
@@ -143,7 +166,7 @@
   			price: 599,
   			stock: 3,
   			year: 2002,
-  			synopsis: "It has been three years since the Clone Wars began. Jedi Master Obi-Wan Kenobi (Ewan McGregor) and Jedi Knight Anakin Skywalker (Hayden Christensen) rescue Chancellor Palpatine (Ian McDiarmid) from General Grievous, the commander of the droid armies, but Grievous escapes. Suspicions are raised within the Jedi Council concerning Chancellor Palpatine, with whom Anakin has formed a bond. Asked to spy on the chancellor, and full of bitterness toward the Jedi Council, Anakin embraces the Dark Side.",
+  			synopsis: "It has been three years since the Clone Wars began. Jedi Master Obi-Wan Kenobi (Ewan McGregor)...",
   			sRating: 98,
   			sLocation: "Las Vegas, Nevada",
   			BuyAucRnt: [true, true, true],
@@ -159,13 +182,31 @@
 
   		document.addEventListener("DOMContentLoaded", function()
   		{
-  			$(".item-title").html(dfData.title);
-  			$(".stock-label").html(dfData.stock);
-  			$(".item-year").html(dfData.year);
-  			$(".item-synopsis").html(dfData.synopsis);
+  			// general movie info
+  			$(".item-title").html(<?php echo $movie['title']?>);
+  			$(".item-year").html(<?php echo $movie['year']?>);
+  			$(".item-synopsis").html(<?php echo $movie['synopsis']?>);
 
-  			$(".ending-time").html(dfData.endTime);
-  			$(".remaining-time").html("323,902.1 hours");
+  			// info pertaining to sale items
+  			if (forSale)
+			{
+				$(".stock-label").html(dfData.stock);
+				$("#buying-details").show();
+			}
+
+			// info pertaining to auction items
+			if (forAuction)
+			{	
+	  			$(".ending-time").html(dfData.endTime);
+	  			$(".remaining-time").html("323,902.1 hours");
+	  			$("#auction-details").show();
+	  		}
+
+  			// infor pertaining to renting items
+  			if (forRent)
+  			{
+  				$("#renting-details").show();
+  			}
   		});
 
   	</script>
