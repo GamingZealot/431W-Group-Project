@@ -36,6 +36,7 @@ CREATE TABLE Movies(
 	movieId		INTEGER		NOT NULL AUTO_INCREMENT,
 	title		VARCHAR(50)	NOT NULL,
 	year		INTEGER,
+    pictureUrl	VARCHAR(500),
 	synopsis	VARCHAR(500),
 	UNIQUE(title, year),
 	PRIMARY KEY(movieId)
