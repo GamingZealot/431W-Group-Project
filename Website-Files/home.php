@@ -24,8 +24,15 @@
     <body>
         <img id="banner" src="banner.png" alt="Banner Image"/>
 	<p align="right">
-	<input type="button" name="Login" value="Login" style="height:25px" onclick="openLogin()">
-	<input type="button" name="Register" value="Register" style="height:25px" onclick="openRegister()">
+<?PHP
+	if(!isset($_COOKIE["user_id"])) {
+		echo '<input type="button" name="Login" value="Login" style="height:25px" onclick="openLogin()">';
+		echo '<input type="button" name="Register" value="Register" style="height:25px" onclick="openRegister()">';
+	} else {
+		echo "Welcome " . $_COOKIE["user_name"] . "!<br>";
+		echo '<input type="button" name="Logout" value="Logout" style="height:25px" onclick="openLogout()">';
+	}
+?>
 	</p>
     </body>
 </div>
@@ -182,6 +189,10 @@ function openLogin() {
 }
 function openSearch() {
      document.location.href = "category.php?cat=All&sch=" + document.getElementById("searchBar").value;
+}
+
+function openLogout() {
+	document.location.href = 'logout.php';
 }
 </script>
 </html>
