@@ -6,9 +6,11 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style>
+<body style="background-color:powderblue;">
+</body>
+  <style>
             body {
- 
+				
             }
             #banner {
                 position: absolute;
@@ -22,14 +24,14 @@
         </style>
     </head>
     <body>
-        <img id="banner" src="banner.png" alt="Banner Image"/>
+    <img id="banner" src="banner.png" alt="Banner Image"/>
 	<p align="right">
 <?PHP
 	if(!isset($_COOKIE["user_id"])) {
 		echo '<input type="button" name="Login" value="Login" style="height:25px" onclick="openLogin()">';
 		echo '<input type="button" name="Register" value="Register" style="height:25px" onclick="openRegister()">';
 	} else {
-		echo "Welcome " . $_COOKIE["user_name"] . "!<br>";
+		echo "<b>Welcome " . $_COOKIE["user_name"] . "!</b><br>";
 		echo '<input type="button" name="Logout" value="Logout" style="height:25px" onclick="openLogout()">';
 	}
 ?>
@@ -147,6 +149,15 @@
 </div>
   <input id="searchBar" type="text" name="firstname" style="font-size:18pt;height:25px;width:1000px;"><input type="button" value="Search" style="height:30px;" onclick="openSearch()"/>
 </p>
+</div>
+<div>
+	<img id="big_mike" src="big_mike.jpg" alt="Big Mike"/>
+	<font face="comic sans ms, comic sans, papyrus" color="red" size="5"> Hey there, I'm Big Mike and welcome to my movie shack!
+	I've been selling quality VHS and DVDs since 1987 and I'm here to give YOU some CRAZY deals on top of the line VHS movies and more.
+	Enjoy your stay, check out some of our quality categories below, and I'll see you soon!
+	<img id="reel" src="reel.gif" alt="Reel"/>
+	</font>
+	</br>
 </div>
 <div>	
 <input type="button" name="All" value="All" style="height:250px;width:250px;background-color: red;color:white;font-size: 40px;white-space: normal;" onclick="openNew('All')"/>
