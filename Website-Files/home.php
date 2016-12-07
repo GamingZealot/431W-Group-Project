@@ -82,7 +82,7 @@
 </style>
 <ul>
 	<li>
-	<a href="">All Movies</a>
+	<a href="category.php?cat=All&sch=">All Movies</a>
 	<ul>
 		<li><a href="category.php?cat=Movies&sch=">Movies</a></li>
 		<li><a href="category.php?cat=TV Shows&sch=">TV Shows</a></li>
