@@ -224,12 +224,12 @@ INSERT INTO Items (location, description, format) VALUES ("Pennsylvania", "Great
 INSERT INTO Items (location, description, format) VALUES ("Rhode Island", "", "DVD");
 
 /* Sellers */
-INSERT INTO Sellers (companyName) VALUES ("");
+INSERT INTO Sellers (companyName) VALUES ("Movie Mania Mart");
 INSERT INTO Sellers (companyName) VALUES ("Blu-Ray and More");
 INSERT INTO Sellers (companyName) VALUES ("Tony's DVDs");
-INSERT INTO Sellers (companyName) VALUES ("");
+INSERT INTO Sellers (companyName) VALUES ("Monster Movies, Inc");
 INSERT INTO Sellers (companyName) VALUES ("Big John's Movie Store");
-INSERT INTO Sellers (companyName) VALUES ("");
+INSERT INTO Sellers (companyName) VALUES ("Steph's DVD Outlet");
 INSERT INTO Sellers (companyName) VALUES ("VHS Only Mega-Outlet");
 
 /* Is_Seller */
