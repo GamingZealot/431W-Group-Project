@@ -126,7 +126,7 @@ if (isset($_POST['Submit1'])) {
 		$query = "INSERT INTO Uses_Card (uid, cardId) VALUES ( ".$uid.",".$cardId.")";
 		mysqli_query($db, $query) or die('Error querying database inserting user card relation.');
 		
-		header('Location: login.php');
+		echo '<script type="text/javascript">document.location.href = "login.php"</script>';
 	}
 
 }
