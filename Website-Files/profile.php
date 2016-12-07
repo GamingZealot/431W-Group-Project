@@ -1,8 +1,19 @@
-<?php
- 	$db = mysqli_connect('localhost','root','Dudio10','cmpsc431w')
- 	or die('Error connecting to MySQL server.');
+	<p align="right">
+<?PHP
+	if(!isset($_COOKIE["user_id"])) {
+		echo '<input type="button" name="Login" value="Login" style="height:25px" onclick="openLogin()">';
+		echo '<input type="button" name="Register" value="Register" style="height:25px" onclick="openRegister()">';
+	} else {
+		echo "<a href='profile.php?uid=" . $_COOKIE["user_id"] . "'>Welcome " . $_COOKIE["user_name"] . "!</a>";
+		echo '<input type="button" name="Logout" value="Logout" style="height:25px" onclick="openLogout()">';
+	}
+?>
+	</p>
 
-	$uid = $_GET['uid'];
+<?php
+	$db = mysqli_connect('127.0.0.1','root','','cmpsc431w')
+ 	or die('Error connecting to MySQL server.');
+	$uid = $_COOKIE["user_id"];
 
 //Basic user info
 	$query = 	
@@ -20,7 +31,6 @@
 		$addrzip = $row['addressZip'];
 		$phone = $row['phone'];
 		$age = $row['age'];
-
 
 //get won auctions
 		$query1 = "
@@ -74,10 +84,30 @@
         </style>
     	<img id="banner" src="banner.png" alt="Banner Image"/>
     </head>
-	<body>
+	<body style="background-color:powderblue;">
 		<?php
+		echo '<br> <br> <br> <br> <br> <br> <br> <br> <br> <br>';
+		if ($uid == 0){
+			echo '<b>Sales Report</b><br>';
+			$query5 = "SELECT DISTINCT M.title as Item, U.name as Buyer, US.name as Seller, T.revenue as Revenue
+						FROM Transactions as T, Items as I, Users as U, Is_Movie as IM, Movies as M, Is_Seller as ISe, Sellers as S, Users as US
+						WHERE T.itemId = I.itemId AND I.itemId = IM.itemId AND IM.movieId = M.movieId AND T.uid = U.uid AND T.sellerId = ISe.sellerId AND ISe.uid = US.uid";
+ 		$result5 = mysqli_query($db, $query5);
+ 		
 
-			echo '<br> <br> <br> <br> <br> <br> <br> <br> <br><br><b>User Information</b><br>';
+ 		echo "<TABLE border = 1>";
+		echo "<tr><td>Item</td><td>Buyer</td><td>Seller</td><td>Revenue</td></tr>";
+		while ($row5 = mysqli_fetch_array($result5)) {
+			echo "<tr>";
+			echo "<td>" . $row5['Item'] . "</td>"."<td>".$row5['Buyer']."</td>"."<td>".$row5['Seller']."</td>"."<td>".$row5['Revenue']."</td>";
+			echo "</tr>";
+		}
+		echo "</TABLE>";
+
+
+
+		}else{
+			echo '<b>User Information</b><br>';
 			echo 'Name: '. $name.'<br>';
 			echo 'Street: '. $addrstr.'<br>';
 			echo 'City: '. $addrcty.'<br>';
@@ -87,6 +117,7 @@
 			echo 'Age: '. $age.'<br><br>';
 
 			echo '<b>Auctions Won:</b><br>';
+			echo '<a href="post.php" class="button">List an item for sale</a><br>';
 			if($num_records1 == 0){
 				echo 'You have not won any auctions yet. <br>';
 			}
@@ -104,22 +135,27 @@
  				echo 'Price Paid: '. $row2['price']. '<br>';
 			}
 
-			if($isSeller == True){
+			//if($isSeller == True){
 				$query4 = 	
 					"SELECT *
 					FROM Is_Seller as ISe, is_Movie as IM, Transactions as T, Movies as M
 					WHERE ISe.uid = ".$uid." AND ISe.sellerId = T.sellerId AND T.itemId = IM.itemId AND IM.movieId = M.movieId";
  					$result4 = mysqli_query($db, $query4);
  					echo '<br><b>Sold Items:</b><br>';
+ 					echo '<a href="post.php" class="button">List an item for sale</a><br>';
  					while ($row4 = mysqli_fetch_array($result4)) {
  						echo 'Movie Title: '. $row4['title']. '<br>';
  						echo 'Revenue: '. $row4['revenue']. '<br>';
  					}
-			}
+		//	}
 			echo '<br><br>';
-			mysqli_close($db);
+		}
+	mysqli_close($db);
 		?>
 
+
+
+<br> <br> <br> <br><br> <br> <br> <br>
 	</body>
 	<footer>
   		<p><font size="2px"> Site created by HelloWord </font></p>
