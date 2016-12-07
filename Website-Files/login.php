@@ -82,7 +82,7 @@ if (isset($_POST['Submit1'])) {
 		$cookie_name = "user_name";
 		$cookie_value = $username;
 		setcookie($cookie_name, $cookie_value, time() + (86400), "/"); // 86400 = 1 day			
-		header('Location: home.php');
+		echo '<script type="text/javascript">document.location.href = "home.php"</script>';
 		}
 	}
 }
