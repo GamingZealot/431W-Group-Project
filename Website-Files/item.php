@@ -1,10 +1,11 @@
 <?php
 // load data into cmpsc431w
+// source /Library/WebServer/Documents/helloworld/TableCreation.sql
 // source /Library/WebServer/Documents/helloworld/sample_data_1.sql
 	$DEFAULT_MID = 0;
 	$DEFAULT_IID = 0;
 
- 	$db = mysqli_connect('localhost','root','Dudio10','cmpsc431w')
+ 	$db = mysqli_connect('localhost','root','Password22#','cmpsc431w')
  	or die('Error connecting to MySQL server.');
 
  	$mid = $_GET['mid'];
@@ -55,6 +56,16 @@
 	$result = mysqli_query($db, $query);
 	$auctionItem = mysqli_fetch_array($result);
 	$forAuction = ($auctionItem != null);
+
+
+
+	$query = "SELECT S.companyName
+	          FROM Sold_By B, Sellers S
+	          WHERE B.sellerId = S.sellerId AND B.itemId = ".$iid;
+	mysqli_query($db, $query) or die('Error querying Sold_By.');
+	$result = mysqli_query($db, $query);
+	$seller = mysqli_fetch_array($result);
+
 ?>
 
 <html>
@@ -84,6 +95,12 @@
 			background-color: #EEEEEE;
 			float: left;
 			text-align: center;
+		}
+		#moviePic
+		{
+			height: 92%;
+			width: 92%;
+			margin: 4%;
 		}
 		#item-purchase-info
 		{
@@ -135,7 +152,11 @@
 			<a href="category.php">&#8592;Back to search results</a><br/>
 		</div>
 		<div id="item-preview">
-			<img src="http://i.ebayimg.com/00/$T2eC16ZHJIEFHRr5RCt!BS!h,kG0y!~~_35.JPG?set_id=89040003C1"/>
+			<img id="moviePic" src="<?php 
+				if ($movie['pictureUrl'] == null)
+					echo 'vhs.jpg';
+				else
+					echo $movie['pictureUrl']; ?>"/>
 		</div>
 		<div id="item-purchase-info">
 			<strong class="title item-title"><?php echo $movie['title']?></strong><br/><br/>
@@ -143,24 +164,24 @@
 			<div id="purchasing-options">
 				<div id="buying-details" class="purchase-details">
 					Buy it now!<br/>
-					Price: <label class="price-label"></label><br/>
-					Stock: <label class="stock-label"></label><br/>
-					<button onclick="alert('purchased')">Buy this item</button>
+					Price: <label>$<?php echo money_format("%n", $saleItem['price'])?></label><br/>
+					Stock: <label><?php echo $saleItem['stock']?> items remaining</label><br/>
+					<button onclick="alert('you done did it')">Buy this item</button>
 				</div>
 				<br/>
 				<div id="auction-details" class="purchase-details">
 					Place a new bid<br/>
-					Current bid: <label class="price-label"></label><br/>
+					Current bid: <label>$<?php echo money_format("%n", $auctionItem['currentBid'])?></label><br/>
 					<input type="text" id="newBidArea"/><br/>
 					<button onclick="alert('Bid placed')">Place bid</button>
 					<br/>
-					Auction ends at <label class="ending-time"></label><br/>
-					Time remaining: <label class="remaining-time"></label>
+					Auction ends at <label><?php echo $auctionItem['endTime']?></label><br/>
+					Time remaining: <label>[calculate]</label>
 				</div>
 				<br/>
 				<div id="renting-details" class="purchase-details">
 					Available for rent!<br/>
-					Price: <label class="price-label"></label><br/>
+					Price: <label>$<?php echo money_format("%n", $rentableItem['rentPrice'])?></label><br/>
 					<button onclick="alert('Rent complete')">Rent now</button>
 				</div>
 				<br/>
@@ -171,7 +192,7 @@
 			<div id="seller-info">
 				<strong class="title">Seller Information</strong><br/><br/>
 				<div class="specifics">
-					Name: <label id="seller-name"></label><br/>
+					Name: <label><?php echo $seller['companyName']?></label><br/>
 					Location: <label id="seller-location"></label><br/>
 					Seller rating: <label id="seler-rating"></label><br/>
 				</div>
@@ -201,7 +222,8 @@
 	</body>
 
   	<script>
-		document.getElementById("newBidArea").placeholder = "$0.01 or higher";
+		document.getElementById("newBidArea").placeholder = 
+			"$" + (1 + <?php echo $auctionItem['currentBid']?>).toString() + " or higher";
 
 		// info pertaining to sale items
 		<?php 
