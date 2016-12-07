@@ -551,6 +551,31 @@ INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('20
 INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 99);
 INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-23 00:00:00', 5.00, 3.50, 100);
 
+/Rental Items*/
+INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 1);
+INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 2);
+INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 3);
+INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 4);
+INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 5);
+INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 6);
+INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 7);
+INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 8);
+INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 9);
+INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 10);
+INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 11);
+INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 12);
+INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 13);
+INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 14);
+INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 15);
+INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 16);
+INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 17);
+INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 18);
+INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 19);
+INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 20);
+INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 21);
+INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 22);
+INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 23);
+
 /* Ratings */
 INSERT INTO Ratings (raterId, itemId, rating, commentText) VALUES (7, 51, 2, "This guy was lame.");
 INSERT INTO Ratings (raterId, itemId, rating, commentText) VALUES (8, 52, 1, "Horrible service!!");
