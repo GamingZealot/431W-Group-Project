@@ -31,7 +31,7 @@
 		echo '<input type="button" name="Login" value="Login" style="height:25px" onclick="openLogin()">';
 		echo '<input type="button" name="Register" value="Register" style="height:25px" onclick="openRegister()">';
 	} else {
-		echo "<b>Welcome " . $_COOKIE["user_name"] . "!</b><br>";
+		echo "<a href='profile.php?uid=" . $_COOKIE["user_id"] . "'>Welcome " . $_COOKIE["user_name"] . "!</a>";
 		echo '<input type="button" name="Logout" value="Logout" style="height:25px" onclick="openLogout()">';
 	}
 ?>
@@ -53,7 +53,6 @@
 		background: #ccc;
 	}
 	li {
-
 		float: left;
 		display: inline;
 		position: relative;
@@ -201,7 +200,6 @@ function openLogin() {
 function openSearch() {
      document.location.href = "category.php?cat=All&sch=" + document.getElementById("searchBar").value;
 }
-
 function openLogout() {
 	document.location.href = 'logout.php';
 }
