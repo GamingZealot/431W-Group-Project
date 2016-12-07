@@ -1,24 +1,65 @@
 <?php
+// load data into cmpsc431w
+// source /Library/WebServer/Documents/helloworld/sample_data_1.sql
+	$DEFAULT_MID = 0;
+	$DEFAULT_IID = 0;
+
  	$db = mysqli_connect('localhost','root','Dudio10','cmpsc431w')
  	or die('Error connecting to MySQL server.');
 
  	$mid = $_GET['mid'];
 	$iid = $_GET['iid'];
 
+	if ($mid == null) $mid = $DEFAULT_MID;
+	if ($iid == null) $iid = $DEFAULT_IID;
+
 // find movie corresponding to movie id
-// TODO: handle erroneous movie IDs
+// TODO: handle erroneous movie IDs 
+
 	$query = "SELECT *
               FROM Movies
-              WHERE movieId = " . $mid . " ";
+              WHERE movieId = ".$mid." ";
 
 	mysqli_query($db, $query) or die('Error querying movies database.');
 	$result = mysqli_query($db, $query);
 	$movie = mysqli_fetch_array($result);
+
+
+	$query = "SELECT *
+              FROM Items
+              WHERE itemId = ".$iid." ";
+
+	mysqli_query($db, $query) or die('Error querying items database.');
+	$result = mysqli_query($db, $query);
+	$item = mysqli_fetch_array($result);
+
+
+// TODO: ensure movie and item are valid in Is_Movie table
+
+
+	// figure out if item is for sale, rent, auction, or combination of those
+	$query = "SELECT * FROM SaleItems WHERE itemId = ".$iid." ";
+	mysqli_query($db, $query) or die('Error querying Saleitems.');
+	$result = mysqli_query($db, $query);
+	$saleItem = mysqli_fetch_array($result);
+	$forSale = ($saleItem != null);
+
+	$query = "SELECT * FROM RentableItems WHERE itemId = ".$iid." ";
+	mysqli_query($db, $query) or die('Error querying RentableItems.');
+	$result = mysqli_query($db, $query);
+	$rentableItem = mysqli_fetch_array($result);
+	$forRent = ($rentableItem != null);
+
+	$query = "SELECT * FROM AuctionItems WHERE itemId = ".$iid." ";
+	mysqli_query($db, $query) or die('Error querying AuctionItems.');
+	$result = mysqli_query($db, $query);
+	$auctionItem = mysqli_fetch_array($result);
+	$forAuction = ($auctionItem != null);
 ?>
 
 <html>
 	<head>
-		<img width="350" height="60" src="../images/banner.png"/><br/>
+		<a href="home.php"><img width="350" height="60" src="../images/banner.png"/></a><br/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<style type="text/css">
@@ -91,13 +132,13 @@
 	</head>
 	<body>
 		<div id="head-spacer">
-			<a href="home.php">&#8592;Back to search results</a><br/>
+			<a href="category.php">&#8592;Back to search results</a><br/>
 		</div>
 		<div id="item-preview">
 			<img src="http://i.ebayimg.com/00/$T2eC16ZHJIEFHRr5RCt!BS!h,kG0y!~~_35.JPG?set_id=89040003C1"/>
 		</div>
 		<div id="item-purchase-info">
-			<strong class="title item-title"></strong><br/><br/>
+			<strong class="title item-title"><?php echo $movie['title']?></strong><br/><br/>
 
 			<div id="purchasing-options">
 				<div id="buying-details" class="purchase-details">
@@ -122,6 +163,10 @@
 					Price: <label class="price-label"></label><br/>
 					<button onclick="alert('Rent complete')">Rent now</button>
 				</div>
+				<br/>
+				<div id="NA-details" class="purchase-details">
+					Unfortunately, this item is not available for sale, auction, or rent at this time.<br/>
+				</div>
 			</div>
 			<div id="seller-info">
 				<strong class="title">Seller Information</strong><br/><br/>
@@ -136,9 +181,10 @@
 		<div id="movie-description">
 			<strong class="title">Item description</strong><br/>
 			<div class="specifics">
-				Title: <label class="item-title"></label><br/>
-				Year: <label class="item-year"></label><br/>
-				Synopsis: <label class="item-synopsis"></label><br>
+				Title: <label><?php echo $movie['title']?></label><br/>
+				Year: <label><?php echo $movie['year']?></label><br/>
+				Synopsis: <label><?php echo $movie['synopsis']?></label><br>
+				Location: <label><?php echo $item['location']?></label><br>
 			</div>
 
 		</div>
@@ -155,59 +201,27 @@
 	</body>
 
   	<script>
-  		var forSale, forAuction, forRent;
+		document.getElementById("newBidArea").placeholder = "$0.01 or higher";
 
-  		forSale = forAuction = forRent = false;
+		// info pertaining to sale items
+		<?php 
+		if ($forSale)
+			echo '$("#buying-details").show();
+		          $(".stock-label").html("");';
 
-  		var prices = document.getElementsByClassName("price-label");
-  		
-  		var dfData = {
-  			title: "Star Wars Episode III: Revenge of the Sith",
-  			price: 599,
-  			stock: 3,
-  			year: 2002,
-  			synopsis: "It has been three years since the Clone Wars began. Jedi Master Obi-Wan Kenobi (Ewan McGregor)...",
-  			sRating: 98,
-  			sLocation: "Las Vegas, Nevada",
-  			BuyAucRnt: [true, true, true],
-  			endTime: "2024.11.08.23.09"
-  		}
+		// info pertaining to auction items
+		if ($forAuction)
+			echo '$("#auction-details").show();
+				  $(".ending-time").html("");
+  			      $(".remaining-time").html("");';
 
-  		for (var i = 0; i < prices.length; i++)
-  		{
-  			prices[i].innerHTML = "$" + Math.floor(dfData.price - (i * 250)) + ".99";
-  			if (i == 1)
-				document.getElementById("newBidArea").placeholder = "$" + Math.floor(dfData.price - (i * 250) + 2) + ".00 or higher";
-  		}
+  		// info pertaining to renting items
+		if ($forRent)
+			echo '$("#renting-details").show();';
 
-  		document.addEventListener("DOMContentLoaded", function()
-  		{
-  			// general movie info
-  			$(".item-title").html(<?php echo $movie['title']?>);
-  			$(".item-year").html(<?php echo $movie['year']?>);
-  			$(".item-synopsis").html(<?php echo $movie['synopsis']?>);
-
-  			// info pertaining to sale items
-  			if (forSale)
-			{
-				$(".stock-label").html(dfData.stock);
-				$("#buying-details").show();
-			}
-
-			// info pertaining to auction items
-			if (forAuction)
-			{	
-	  			$(".ending-time").html(dfData.endTime);
-	  			$(".remaining-time").html("323,902.1 hours");
-	  			$("#auction-details").show();
-	  		}
-
-  			// infor pertaining to renting items
-  			if (forRent)
-  			{
-  				$("#renting-details").show();
-  			}
-  		});
+		if (!($forSale || $forAuction || $forRent))
+			echo '$("#NA-details").show();'
+		?>
 
   	</script>
 
