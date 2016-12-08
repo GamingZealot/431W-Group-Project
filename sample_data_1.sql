@@ -671,3 +671,7 @@ INSERT INTO Categorized_as (itemId, categoryId) VALUES (30, 30);
 /* Sample credit card info */
 INSERT INTO CreditCards (cardNum, securityCode, cardType, cardExp) VALUES(1234123412341234, "789", "VISA", '1000-01-01 00:00:00');
 INSERT INTO Uses_Card (uid, cardId) VALUES(9, 1);
+
+INSERT into Transactions(sellerId, uid, itemId, revenue, timestamp) VALUES (3, 2, 32, 20, '2012-2-02');
+INSERT into Transactions(sellerId, uid, itemId, revenue, timestamp) VALUES (3, 2, 12, 20, '2012-2-02');
+INSERT into Transactions(sellerId, uid, itemId, revenue, timestamp) VALUES (3, 2, 2, 20, '2012-2-02');
