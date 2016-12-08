@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
- $db = mysqli_connect('localhost','root','Dudio10','cmpsc431w')
+ $db = mysqli_connect('localhost','root','password','cmpsc431w')
  or die('Error connecting to MySQL server.');
 ?>
 
@@ -15,7 +15,8 @@
 	$sch = $_GET['sch'];	
 	 ?>
  </head>
- <body>
+ <body style="background-color:powderblue;">
+ <a href="home.php"><img src="banner.png" /></a><br>
  <font size="7" color="red"><b><?php echo $cat; ?></b></font>
  <p align="right">
  <?PHP
@@ -137,13 +138,24 @@
 	</ul>
 	</li>
 </div>
-  <input id="searchBar" type="text" name="firstname" style="font-size:18pt;height:25px;width:1000px;"><input type="button" value="Search" style="height:30px;" onclick="openSearch()"/>
+  <input id="searchBar" type="text" name="firstname" style="font-size:18pt;height:25px;width:1000px;"><input type="button" value="Gimmie Dem Good Deals" style="height:30px;" onclick="openSearch()"/>
 </p>
 <?php
+if($cat == 'All')
+{
+$query = "SELECT M.title, M.movieId, M.year, M.synopsis, I.itemId
+ FROM Movies M
+ JOIN Items I on M.movieId = I.itemId
+ WHERE M.title LIKE '%".$sch."%'";	
+}
+else
+{
 $query = "SELECT M.title, M.movieId, M.year, M.synopsis, I.itemId
  FROM Categories C, Movies M, Items I, Categorized_as A, Is_Movie B
+ JOIN Items I on M.movieId = I.itemId
  WHERE C.categoryName = '".$cat."' AND C.categoryId = A.categoryId AND A.itemId = I.itemId AND I.itemId = B.itemId AND B.movieId = M.movieId AND M.title LIKE '%".$sch."%'";
-mysqli_query($db, $query) or die('Error querying database.');
+}
+ mysqli_query($db, $query) or die('Error querying database.');
 $result = mysqli_query($db, $query);
 while ($row = mysqli_fetch_array($result)) {
  echo '<a href="item.php?mid='.$row['movieId'].'&iid='.$row['itemId'].'" style="color: red">' . $row['title'] . '</a>';

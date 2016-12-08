@@ -26,7 +26,7 @@ if (isset($_POST['Submit1'])) {
 		}
 
 	}else{
-		$db = mysqli_connect('127.0.0.1','root','','cmpsc431w') or die('Error connecting to MySQL server.');
+		$db = mysqli_connect('127.0.0.1','root','password','cmpsc431w') or die('Error connecting to MySQL server.');
 		$query = "INSERT INTO Movies (title, year, pictureURL, synopsis) VALUES ('".$movie."',".$year.",'".$photo."','".$synop."')";
 		mysqli_query($db, $query) or die('Error querying database 1.');
 

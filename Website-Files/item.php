@@ -17,7 +17,7 @@ else if (isset($_POST['rentItem']))
 	$DEFAULT_MID = 0;
 	$DEFAULT_IID = 0;
 
- 	$db = mysqli_connect('localhost','root','Password22#','cmpsc431w')
+ 	$db = mysqli_connect('localhost','root','password','cmpsc431w')
  	or die('Error connecting to MySQL server.');
 
  	$mid = $_GET['mid'];
@@ -105,7 +105,7 @@ else if (isset($_POST['rentItem']))
 
 <html>
 	<head>
-		<a href="home.php"><img width="350" height="60" src="../images/banner.png"/></a>
+		<a href="home.php"><img width="350" height="60" src="banner.png"/></a>
 		<label id="loginNotice"><?php echo $loginMsg?></label><br/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">

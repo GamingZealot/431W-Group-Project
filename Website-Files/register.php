@@ -33,7 +33,7 @@ if (isset($_POST['Submit1'])) {
 		}	
 	}
 	else {
-		$db = mysqli_connect('127.0.0.1','root','','cmpsc431w')
+		$db = mysqli_connect('127.0.0.1','root','password','cmpsc431w')
  		or die('Error connecting to MySQL server.');
 		$query = "INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( '".$email."','".$password."','".$username."','".$street."','".$city."','".$state."', '".$zip."', '".$phone."', ".$age.")";
 		mysqli_query($db, $query) or die('Error querying database inserting user.');
@@ -86,7 +86,7 @@ if (isset($_POST['Submit1'])) {
     </head>
     <body>
 	<div>
-    <img id="banner" src="banner.png" alt="Banner Image"/>
+    <a href="home.php"><img src="banner.png" /></a>
 	</div>
 
 <div style="position: relative; top: 25%;">

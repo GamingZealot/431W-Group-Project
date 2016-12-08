@@ -11,7 +11,7 @@
 	</p>
 
 <?php
-	$db = mysqli_connect('127.0.0.1','root','','cmpsc431w')
+	$db = mysqli_connect('127.0.0.1','root','password','cmpsc431w')
  	or die('Error connecting to MySQL server.');
 	$uid = $_COOKIE["user_id"];
 
@@ -93,7 +93,7 @@
                 z-index: -1;
             }
         </style>
-    	<img id="banner" src="banner.png" alt="Banner Image"/>
+    	<a href="home.php"><img src="banner.png" /></a>
     </head>
 	<body style="background-color:powderblue;">
 	<font face="comic sans ms, comic sans, papyrus" color="red">

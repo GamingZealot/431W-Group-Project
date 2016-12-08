@@ -24,7 +24,7 @@
         </style>
     </head>
     <body>
-    <img id="banner" src="banner.png" alt="Banner Image"/>
+    <a href="home.php"><img src="banner.png" /></a>
 	<p align="right">
 <?PHP
 	if(!isset($_COOKIE["user_id"])) {
@@ -146,7 +146,7 @@
 	</ul>
 	</li>
 </div>
-  <input id="searchBar" type="text" name="firstname" style="font-size:18pt;height:25px;width:1000px;"><input type="button" value="Search" style="height:30px;" onclick="openSearch()"/>
+  <input id="searchBar" type="text" name="firstname" style="font-size:18pt;height:25px;width:1000px;"><input type="button" value="Gimmie Dem Good Deals" style="height:30px;" onclick="openSearch()"/>
 </p>
 </div>
 <div>

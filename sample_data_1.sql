@@ -1,7 +1,6 @@
-﻿/* Users */
+
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "admin@psu.edu", "admin", "admin", "2 E. College Ave.", "State College", "Pennsylvania", "16802", "111-111-1112", 50);
-INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "john.doe@psu.edu", "c11083b4b0a7743af748c85d343dfee9fbb8b2576c05f3a7f0d626aadfc", "John Doe", "1 E. College Ave.", "State College", "Pennsylvania", "16801", "111-111-1111", 50);
-INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "jane.doe@psu.edu", "630bf032efe4507f2c57b280995925a9", "Jane Doe", "2 E. College Ave.", "State College", "Pennsylvania", "16801", "111-111-2222", 48);
+INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "jane.doe@psu.edu", "password", "crc5464", "2 E. College Ave.", "State College", "Pennsylvania", "16801", "111-111-2222", 48);
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "chris.carney@psu.edu", "c11083b4b0a7743af748c85d343dfee9fbb8b2576c05f3a7f0d632b6aad", "Chris Carney", "3 E. College Ave.", "State College", "Pennsylvania", "16801", "111-111-3333", 21);
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "pat.colville@psu.edu", "5206b8b8a996cf5320cb12ca91c7b790fba9f030408efe83ebb48dc3007bd", "Pat Colville", "4 E. College Ave.", "State College", "Pennsylvania", "16801", "111-111-4444", 21);
 INSERT INTO Users (email, password, name, addressStreet, addressCity, addressState, addressZip, phone, age) VALUES ( "charles.desanno@psu.edu", "e4ba5cbd251c98e6cd1c23f126a3b81d8d8328abc95387220952b3ef9f", "Charles De Sanno", "5 E. College Ave.", "State College", "Pennsylvania", "16801", "111-122-4444", 21);
@@ -233,7 +232,6 @@ INSERT INTO Sellers (companyName) VALUES ("Steph's DVD Outlet");
 INSERT INTO Sellers (companyName) VALUES ("VHS Only Mega-Outlet");
 
 /* Is_Seller */
-INSERT INTO Is_Seller (uid, sellerId) VALUES (1, 1);
 INSERT INTO Is_Seller (uid, sellerId) VALUES (2, 2);
 INSERT INTO Is_Seller (uid, sellerId) VALUES (3, 3);
 INSERT INTO Is_Seller (uid, sellerId) VALUES (4, 4);

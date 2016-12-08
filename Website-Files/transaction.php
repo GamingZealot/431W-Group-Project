@@ -2,7 +2,7 @@
 
 	$DEFAULT_IID = 0;
 
-	$db = mysqli_connect('localhost','root','Password22#','cmpsc431w')
+	$db = mysqli_connect('localhost','root','password','cmpsc431w')
  	or die('Error connecting to MySQL server.');
 
  	$mid = $_GET['mid'];
