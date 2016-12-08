@@ -14,6 +14,8 @@ else if (isset($_POST['rentItem']))
 // load data into cmpsc431w
 // source /Library/WebServer/Documents/helloworld/TableCreation.sql
 // source /Library/WebServer/Documents/helloworld/sample_data_1.sql
+// INSERT INTO CreditCards (cardNum, securityCode, cardType, cardExp) VALUES(1234123412341234, "789", "VISA", '1000-01-01 00:00:00');
+// INSERT INTO Uses_Card (uid, cardId) VALUES(9, 1);
 	$DEFAULT_MID = 0;
 	$DEFAULT_IID = 0;
 
@@ -57,6 +59,10 @@ else if (isset($_POST['rentItem']))
 	mysqli_query($db, $query) or die('Error querying RentableItems.');
 	$rentableItem = mysqli_fetch_array(mysqli_query($db, $query));
 	$forRent = ($rentableItem != null);
+	
+	// only show renting dialogue if item is in rental table and if it is available
+	if ($forRent && ($rentableItem['availability'] != null))
+		$forRent = 0;
 
 	$query = "SELECT * FROM AuctionItems WHERE itemId = ".$iid." ";
 	mysqli_query($db, $query) or die('Error querying AuctionItems.');

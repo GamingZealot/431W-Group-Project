@@ -101,7 +101,7 @@ CREATE TABLE SaleItems(
 CREATE TABLE RentableItems(
 	rentPrice	REAL		NOT NULL,
 	itemId		INTEGER,
-	availability BOOLEAN,
+	availability	BOOLEAN,
 	FOREIGN KEY(itemId) REFERENCES Sold_By(itemId)
 );
 

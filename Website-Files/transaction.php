@@ -141,6 +141,8 @@
 		// say whether or not transaction was successful
 		switch ($trType)
 		{
+			// note: in all cases, completing a transaction is solely determined by entering the cvv code correctly
+
 			case 1: // auction bid placed
 				$confirmation = $cvvValid ? 'Congratulations! You are the highest bidder for <i>'.$movie['title'].'</i>!' :
 								'Your security code was entered incorrectly. Please try bidding again.';
@@ -148,6 +150,11 @@
 				if ($cvvValid)
 				{
 					// update current bid, change transaction to reflect highest bidder
+					$query = "UPDATE AuctionItems SET currentBid = ".$bid." WHERE itemId = ".$iid;
+					mysqli_query($db, $query) or die("Error updating current bid.");
+
+					$query = "UPDATE Transactions SET uid = ".$uid." WHERE itemId = ".$iid;
+					mysqli_query($db, $query) or die("Error changing transaction for new highest bidder.");
 				}
 				break;
 			
@@ -158,8 +165,8 @@
 				if ($cvvValid)
 				{
 					// remove from rentable items: item is not available for rent anymore
-					$query = "UPDATE RentableItems WHERE itemId = ".$iid;
-					mysqli_query($db, $query) or die("Error nullifying rentable item");
+					$query = "UPDATE RentableItems SET availability = 0 WHERE itemId = ".$iid;
+					mysqli_query($db, $query) or die("Error nullifying rentable item.");
 				}
 				break;
 
