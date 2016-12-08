@@ -96,36 +96,93 @@
 	if (isset($_POST['cvv']))
 	{
 		// check cvv. if incorrect, abort. otherwise, determine if bid is eligible for auctions, then make any transaction
-
-		$query = "INSERT INTO Transactions (sellerId, uid, itemId) VALUES(".$seller['sellerId'].", ".$uid.", ".$iid.")";
-		mysqli_query($db, $query) or die('Error adding new transaction to database.');
+		$cvvValid = $_POST['cvv'] == $card['securityCode'];
+	    
+	    if ($cvvValid)
+	    {
+			$query = "INSERT INTO Transactions (sellerId, uid, itemId, revenue) VALUES(".$seller['sellerId'].", ".$uid.", ".$iid.", ".$revenue.")";
+			mysqli_query($db, $query) or die('Error adding new transaction to database.');
+		}
 
 		$transactionDone = 1;
-
 		// then need to update item (stock, rent availability, highest bid, etc)
 	}
 
 	echo '<header><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></header>';
 	echo '<body style="padding: 10px">';
 
-	if ($card == null)
-		echo '<form method="POST" action="item.php?mid='.$mid.'&iid='.$iid.'">';
-	else if (!$transactionDone)
-		echo '<form method="POST" action="transaction.php?mid='.$mid.'&iid='.$iid.'&trType='.$trType.'&bid='.$bid.'">';
+	if (!$transactionDone)
+	{
+		if ($card == null)
+			echo '<form method="POST" action="item.php?mid='.$mid.'&iid='.$iid.'">';
+		else if (!$transactionDone)
+			echo '<form method="POST" action="transaction.php?mid='.$mid.'&iid='.$iid.'&trType='.$trType.'&bid='.$bid.'">';
+		else
+			echo '<form method="POST" action="item.php?mid='.$mid.'&iid='.$iid.'">';
+
+		echo '<strong>Confirmation:</strong> '.$msg.'<br/><br/>';
+		
+		// only show shipping details for final purchases, but not for auction bids
+		if ($trType != 1)
+			echo '<strong>Ship to:</strong><br/>'.$user['addressStreet'].'<br/>'.
+		          $user['addressCity'].' '.$user['addressState'].' '.$user['addressZip'].'<br/><br/>';
+
+		echo '<strong>Your credit card information:</strong><br/> '.
+		     'Type: '.$card['cardType'].'<br/>Number: '.$cardNumber.'<br/><br/>';
+
+		// prompt user for credit card security code
+		echo 'Enter card cvv: <input type="text" name="cvv" placeholder="(3 digits)"/><br/><br/>';
+		if ($card != null) echo '<input type="submit" value="Submit"/>';
+		else echo "<label style='color: red'>Cannot complete transaction: no credit card on file.</label><br/>";
+		echo '</form></body>';
+	}
 	else
-		echo '<form method="POST" action="item.php?mid='.$mid.'&iid='.$iid.'">';
+	{
+		// say whether or not transaction was successful
+		switch ($trType)
+		{
+			case 1: // auction bid placed
+				$confirmation = $cvvValid ? 'Congratulations! You are the highest bidder for <i>'.$movie['title'].'</i>!' :
+								'Your security code was entered incorrectly. Please try bidding again.';
 
-	echo '<strong>Confirmation:</strong> '.$msg.'<br/><br/>';
-	
-	if ($trType != 1)
-		echo '<strong>Ship to:</strong><br/>'.$user['addressStreet'].'<br/>'.
-	          $user['addressCity'].' '.$user['addressState'].' '.$user['addressZip'].'<br/><br/>';
+				if ($cvvValid)
+				{
+					// update current bid, change transaction to reflect highest bidder
+				}
+				break;
+			
+			case 2: // rent confirmed
+				$confirmation = $cvvValid ? 'Congratulations! <i>'.$movie['title'].'</i> is yours to rent!' :
+								'Your security code was entered incorrectly. Please try renting again.';
 
-	echo '<strong>Your credit card information:</strong><br/> '.
-	     'Type: '.$card['cardType'].'<br/>Number: '.$cardNumber.'<br/><br/>';
-	echo 'Enter card cvv: <input type="text" name="cvv" placeholder="(3 digits)"/><br/><br/>';
-	if ($card != null) echo '<input type="submit" value="Submit"/>';
-	else echo "<label style='color: red'>Cannot complete transaction: no credit card on file.</label><br/>";
-	echo '<input type="submit" value="Cancel"/>';
+				if ($cvvValid)
+				{
+					// remove from rentable items: item is not available for rent anymore
+					$query = "UPDATE RentableItems WHERE itemId = ".$iid;
+					mysqli_query($db, $query) or die("Error nullifying rentable item");
+				}
+				break;
+
+			default: // purchase complete
+				$confirmation = $cvvValid ? 'Congratulations! <i>'.$movie['title'].'</i> is yours!' :
+								'Your security code was entered incorrectly. Please try purchase again.';
+
+				if ($cvvValid)
+				{
+					// accordingly decrease stock by 1 
+					$query = "UPDATE SaleItems SET stock = stock - 1 WHERE itemid = ".$iid;
+
+					mysqli_query($db, $query) or die("Error updating saleItem stock");
+				}
+				break;
+		}
+
+		echo $confirmation.'<br/><br/>';
+	}
+
+	$returnMsg = $transactionDone ? "Return" : "Cancel";
+
+	echo '<form method="POST" action="item.php?mid='.$mid.'&iid='.$iid.'">';
+	echo '<input type="submit" value="'.$returnMsg.'"/>';
 	echo '</form></body>';
 ?>
