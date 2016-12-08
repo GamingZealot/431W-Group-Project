@@ -1,4 +1,16 @@
 <?php
+if (isset($_POST['buyItem']))
+{
+	if (!$loggedIn) echo '<script>alert("Please sign in to make purchases")</script>';
+}
+else if (isset($_POST['placeBid']))
+{
+	if (!$loggedIn) echo '<script>alert("Please sign in to make new bids")</script>';
+}
+else if (isset($_POST['rentItem']))
+{
+	if (!$loggedIn) echo '<script>alert("Please sign in to rent movies")</script>';
+}
 // load data into cmpsc431w
 // source /Library/WebServer/Documents/helloworld/TableCreation.sql
 // source /Library/WebServer/Documents/helloworld/sample_data_1.sql
@@ -69,7 +81,9 @@
 	// find info about user (use cookie)
 	$cookie_name = "user_id"; // -> from login.php
 
-	if(!isset($_COOKIE[$cookie_name]))
+	$loggedIn = isset($_COOKIE[$cookie_name]);
+
+	if(!$loggedIn)
 	{
 		// don't let user buy anything 
 		$loginMsg = "Not logged in";
@@ -92,20 +106,10 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<style type="text/css">
-		body
-		{
-			padding: 0;
-			margin: 0;
-		}
-		#loginNotice
-		{
-			margin: 10px;
-			float: right;
-		}
-		.title
-		{
-			font-size: 18px;
-		}
+		body { padding: 0; margin: 0; }
+		#loginNotice { margin: 10px; float: right; }
+		.title { font-size: 18px; }
+		.noDisplay { display: none; }
 		#item-preview
 		{
 			height: 46%;
@@ -121,11 +125,7 @@
 			width: 92%;
 			margin: 4%;
 		}
-		#item-purchase-info
-		{
-			width: 70%;
-			float: right;
-		}
+		#item-purchase-info { width: 70%; float: right; }
 		.purchase-details
 		{
 			display: none;
@@ -133,10 +133,7 @@
 			background: red;
 			padding: 10px;
 		}
-		#purchasing-options
-		{
-			float: left;
-		}
+		#purchasing-options { float: left; }
 		#seller-info
 		{
 			float: left;
@@ -144,10 +141,7 @@
 			padding-left: 30px;
 			text-align: center;
 		}
-		.specifics
-		{
-			text-align: left;
-		}
+		.specifics { text-align: left; }
 		#movie-description
 		{
 			margin: 10px;
@@ -155,14 +149,8 @@
 			background: #EEEEEE;
 			text-align: center; 
 		}
-		.clearboth
-		{
-			clear: both;
-		}
-		#footer
-		{
-			padding: 10px;
-		}
+		.clearboth { clear: both; }
+		#footer { padding: 10px; }
 		</style>
 	</head>
 	<body>
@@ -177,24 +165,43 @@
 			<strong class="title item-title"><?php echo $movie['title']?></strong><br/><br/>
 
 			<div id="purchasing-options">
-				<form id="buying-details" class="purchase-details" method="POST" action="item.php">
+				<form action="<?php
+					if (!$loggedIn)
+						echo 'item.php?mid='.$mid.'&iid='.$iid;
+					else
+						echo 'transaction.php?mid='.$mid.'&iid='.$iid.'&trType=0';
+					?>" id="buying-details" class="purchase-details" method="POST">
 					<i>Buy it now!</i><br/>
 					Price: <label>$<?php echo money_format("%n", $saleItem['price'])?></label><br/>
 					Stock: <label><?php echo $saleItem['stock']?> items remaining</label><br/>
 					<button type="submit" name="buyItem">Buy this item</button>
 				</form>
 				<br/>
-				<form id="auction-details" class="purchase-details" method="POST" action="item.php">
+				<form action="<?php
+					if (!$loggedIn)
+						echo 'item.php?mid='.$mid.'&iid='.$iid;
+					else
+						echo 'transaction.php?mid='.$mid.'&iid='.$iid.'&trType=1';
+				 	?>" id="auction-details" class="purchase-details" method="<?php $loggedIn ? 'PRE' : 'POST'?>">
 					<i>Place a new bid</i><br/>
 					Current bid: <label>$<?php echo money_format("%n", $auctionItem['currentBid'])?></label><br/>
-					<input type="text" name="newBid"/><br/>
-					<button type="submit" name="placeBid">Place bid</button>
+					<input type="text" name="bid" id="newBidArea"
+					       placeholder="<?php echo '$'.money_format('%n', $auctionItem['currentBid'] + 1).' or more'?>"/><br/>
+					<input class="noDisplay" name="iid" value="<?php echo $iid?>"/>
+					<input class="noDisplay" name="mid" value="<?php echo $mid?>"/>
+					<input class="noDisplay" name="trType" value="1"/>
+					<button type="submit">Place bid</button>
 					<br/>
 					Auction ends at <label><?php echo $auctionItem['endTime']?></label><br/>
 					Time remaining: <label>[calculate]</label>
 				</form>
 				<br/>
-				<form id="renting-details" class="purchase-details" method="POST" action="item.php">
+				<form action="<?php 
+					if (!$loggedIn)
+						echo 'item.php?mid='.$mid.'&iid='.$iid;
+					else
+						echo 'transaction.php?mid='.$mid.'&iid='.$iid.'&trType=2';
+					?>" id="renting-details" class="purchase-details" method="POST">
 					<i>Available for rent!</i><br/>
 					Price: <label>$<?php echo money_format("%n", $rentableItem['rentPrice'])?></label><br/>
 					<button type="submit" name="rentItem">Rent now</button>
@@ -247,37 +254,25 @@
 		{
 			// show info pertaining to sale items
 			if ($forSale)
+			{
 				echo '$("#buying-details").show();
 			          $(".stock-label").html("");';
+			}
 
 			// info pertaining to auction items
 			if ($forAuction)
+			{
 				echo '$("#auction-details").show();
 					  $(".ending-time").html("");
-	  			      $(".remaining-time").html("");
-	  			      document.getElementById("newBidArea").placeholder = 
-					     "$" + (1 +'.$auctionItem['currentBid'].').toString() + " or higher";';
+	  			      $(".remaining-time").html("");';
+			}
 
 	  		// info pertaining to renting items
 			if ($forRent)
+			{
 				echo '$("#renting-details").show();';
+			}
 		}
 		?>
   	</script>
-
 </html>
-
-<?php
-if (isset($_POST['buyItem']))
-{
-
-}
-else if (isset($_POST['placeBid']))
-{
-
-}
-else if (isset($_POST['rentItem']))
-{
-
-}
-?>
