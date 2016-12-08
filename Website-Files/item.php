@@ -162,7 +162,7 @@ else if (isset($_POST['rentItem']))
 					echo $movie['pictureUrl']; ?>"/>
 		</div>
 		<div id="item-purchase-info">
-			<strong class="title item-title"><?php echo $movie['title']?></strong><br/><br/>
+			<i><strong class="title item-title"><?php echo $movie['title']?></strong></i><br/><br/>
 
 			<div id="purchasing-options">
 				<form action="<?php
@@ -223,7 +223,7 @@ else if (isset($_POST['rentItem']))
 		<div id="movie-description">
 			<strong class="title">Item description</strong><br/>
 			<div class="specifics">
-				Title: <label><?php echo $movie['title']?></label><br/>
+				Title: <i><label><?php echo $movie['title']?></label></i><br/>
 				Year: <label><?php echo $movie['year']?></label><br/>
 				Synopsis: <label><?php echo $movie['synopsis']?></label><br>
 				Location: <label><?php echo $item['location']?></label><br>
