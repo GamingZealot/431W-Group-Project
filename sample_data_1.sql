@@ -551,7 +551,7 @@ INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('20
 INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-5 00:00:00', 5.00, 3.50, 99);
 INSERT INTO AuctionItems (endTime, currentBid, reservePrice, itemId) VALUES ('2016-10-23 00:00:00', 5.00, 3.50, 100);
 
-/Rental Items*/
+/*Rental Items*/
 INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 1);
 INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 2);
 INSERT INTO RentableItems (rentPrice, itemId) VALUES (3.00, 3);

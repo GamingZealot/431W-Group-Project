@@ -14,63 +14,81 @@
 	if ($mid == null) $mid = $DEFAULT_MID;
 	if ($iid == null) $iid = $DEFAULT_IID;
 
-// find movie corresponding to movie id
-// TODO: handle erroneous movie IDs 
-
-	$query = "SELECT *
-              FROM Movies
-              WHERE movieId = ".$mid." ";
-
+	// find movie corresponding to movie id
+	$query = "SELECT * FROM Movies WHERE movieId = ".$mid." ";
 	mysqli_query($db, $query) or die('Error querying movies database.');
-	$result = mysqli_query($db, $query);
-	$movie = mysqli_fetch_array($result);
+	$movie = mysqli_fetch_array(mysqli_query($db, $query));
 
-
-	$query = "SELECT *
-              FROM Items
-              WHERE itemId = ".$iid." ";
-
+	// find item
+	$query = "SELECT * FROM Items WHERE itemId = ".$iid." ";
 	mysqli_query($db, $query) or die('Error querying items database.');
-	$result = mysqli_query($db, $query);
-	$item = mysqli_fetch_array($result);
+	$item = mysqli_fetch_array(mysqli_query($db, $query));
 
+	// ensure movie and item are valid in Is_Movie table
+	$query = "SELECT *
+			  FROM Is_Movie
+			  WHERE movieId = ".$mid." AND itemId = ".$iid;
+	mysqli_query($db, $query) or die('Error querying Saleitems.');
+	$is_movie = mysqli_fetch_array(mysqli_query($db, $query));
 
-// TODO: ensure movie and item are valid in Is_Movie table
+	if ($is_movie != null) $valid_match = ($is_movie['movieId'] == $mid);
+	else                   $valid_match = 0;
 
 
 	// figure out if item is for sale, rent, auction, or combination of those
 	$query = "SELECT * FROM SaleItems WHERE itemId = ".$iid." ";
 	mysqli_query($db, $query) or die('Error querying Saleitems.');
-	$result = mysqli_query($db, $query);
-	$saleItem = mysqli_fetch_array($result);
+	$saleItem = mysqli_fetch_array(mysqli_query($db, $query));
 	$forSale = ($saleItem != null);
 
 	$query = "SELECT * FROM RentableItems WHERE itemId = ".$iid." ";
 	mysqli_query($db, $query) or die('Error querying RentableItems.');
-	$result = mysqli_query($db, $query);
-	$rentableItem = mysqli_fetch_array($result);
+	$rentableItem = mysqli_fetch_array(mysqli_query($db, $query));
 	$forRent = ($rentableItem != null);
 
 	$query = "SELECT * FROM AuctionItems WHERE itemId = ".$iid." ";
 	mysqli_query($db, $query) or die('Error querying AuctionItems.');
-	$result = mysqli_query($db, $query);
-	$auctionItem = mysqli_fetch_array($result);
+	$auctionItem = mysqli_fetch_array(mysqli_query($db, $query));
 	$forAuction = ($auctionItem != null);
+	// NOTE: can't display this if the time has run out already
 
 
-
-	$query = "SELECT S.companyName
-	          FROM Sold_By B, Sellers S
-	          WHERE B.sellerId = S.sellerId AND B.itemId = ".$iid;
+	// find info about seller
+	$query = "SELECT S.companyName, U.ratingAvg
+	          FROM Sold_By B, Sellers S, Is_Seller I, Users U
+	          WHERE B.sellerId = S.sellerId AND I.sellerId = B.sellerId AND I.uid = U.uid AND B.itemId = ".$iid;
 	mysqli_query($db, $query) or die('Error querying Sold_By.');
-	$result = mysqli_query($db, $query);
-	$seller = mysqli_fetch_array($result);
+	$seller = mysqli_fetch_array(mysqli_query($db, $query));
 
+	$sellerRating = "no ratings yet";
+
+	if ($seller['ratingAvg'] != null)
+		$sellerRating = $seller['ratingAvg'].' out of 5 stars';
+
+
+	// find info about user (use cookie)
+	$cookie_name = "user_id"; // -> from login.php
+
+	if(!isset($_COOKIE[$cookie_name]))
+	{
+		// don't let user buy anything 
+		$loginMsg = "Not logged in";
+	}
+	else
+	{
+		$query = "SELECT name
+		          FROM Users
+		          WHERE uid = ".$_COOKIE[$cookie_name];
+		mysqli_query($db, $query) or die('Error getting username from cookie');
+		$user = mysqli_fetch_array(mysqli_query($db, $query));
+		$loginMsg = "Logged in as ".$user['name'];
+	}
 ?>
 
 <html>
 	<head>
-		<a href="home.php"><img width="350" height="60" src="../images/banner.png"/></a><br/>
+		<a href="home.php"><img width="350" height="60" src="../images/banner.png"/></a>
+		<label id="loginNotice"><?php echo $loginMsg?></label><br/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<style type="text/css">
@@ -79,13 +97,14 @@
 			padding: 0;
 			margin: 0;
 		}
+		#loginNotice
+		{
+			margin: 10px;
+			float: right;
+		}
 		.title
 		{
 			font-size: 18px;
-		}
-		#head-spacer
-		{
-			padding: 10px;
 		}
 		#item-preview
 		{
@@ -131,7 +150,6 @@
 		}
 		#movie-description
 		{
-			height: 200px;
 			margin: 10px;
 			padding: 10px;
 			background: #EEEEEE;
@@ -148,9 +166,6 @@
 		</style>
 	</head>
 	<body>
-		<div id="head-spacer">
-			<a href="category.php">&#8592;Back to search results</a><br/>
-		</div>
 		<div id="item-preview">
 			<img id="moviePic" src="<?php 
 				if ($movie['pictureUrl'] == null)
@@ -162,39 +177,38 @@
 			<strong class="title item-title"><?php echo $movie['title']?></strong><br/><br/>
 
 			<div id="purchasing-options">
-				<div id="buying-details" class="purchase-details">
-					Buy it now!<br/>
+				<form id="buying-details" class="purchase-details" method="POST" action="item.php">
+					<i>Buy it now!</i><br/>
 					Price: <label>$<?php echo money_format("%n", $saleItem['price'])?></label><br/>
 					Stock: <label><?php echo $saleItem['stock']?> items remaining</label><br/>
-					<button onclick="alert('you done did it')">Buy this item</button>
-				</div>
+					<button type="submit" name="buyItem">Buy this item</button>
+				</form>
 				<br/>
-				<div id="auction-details" class="purchase-details">
-					Place a new bid<br/>
+				<form id="auction-details" class="purchase-details" method="POST" action="item.php">
+					<i>Place a new bid</i><br/>
 					Current bid: <label>$<?php echo money_format("%n", $auctionItem['currentBid'])?></label><br/>
-					<input type="text" id="newBidArea"/><br/>
-					<button onclick="alert('Bid placed')">Place bid</button>
+					<input type="text" name="newBid"/><br/>
+					<button type="submit" name="placeBid">Place bid</button>
 					<br/>
 					Auction ends at <label><?php echo $auctionItem['endTime']?></label><br/>
 					Time remaining: <label>[calculate]</label>
-				</div>
+				</form>
 				<br/>
-				<div id="renting-details" class="purchase-details">
-					Available for rent!<br/>
+				<form id="renting-details" class="purchase-details" method="POST" action="item.php">
+					<i>Available for rent!</i><br/>
 					Price: <label>$<?php echo money_format("%n", $rentableItem['rentPrice'])?></label><br/>
-					<button onclick="alert('Rent complete')">Rent now</button>
-				</div>
+					<button type="submit" name="rentItem">Rent now</button>
+				</form>
 				<br/>
 				<div id="NA-details" class="purchase-details">
-					Unfortunately, this item is not available for sale, auction, or rent at this time.<br/>
+					Unfortunately, the specified item is not available for sale, auction, or rent at this time.<br/>
 				</div>
 			</div>
 			<div id="seller-info">
 				<strong class="title">Seller Information</strong><br/><br/>
 				<div class="specifics">
 					Name: <label><?php echo $seller['companyName']?></label><br/>
-					Location: <label id="seller-location"></label><br/>
-					Seller rating: <label id="seler-rating"></label><br/>
+					Seller rating average: <label><?php echo $sellerRating?></label><br/>
 				</div>
 			</div>
 		</div>
@@ -206,8 +220,9 @@
 				Year: <label><?php echo $movie['year']?></label><br/>
 				Synopsis: <label><?php echo $movie['synopsis']?></label><br>
 				Location: <label><?php echo $item['location']?></label><br>
+				Movie Format: <label><?php echo $item['format']?></label><br>
+				User Description: <label><?php echo $item['description']?></label><br>
 			</div>
-
 		</div>
 		<br class="clearboth"/>
   		<div id="footer">
@@ -222,29 +237,47 @@
 	</body>
 
   	<script>
-		document.getElementById("newBidArea").placeholder = 
-			"$" + (1 + <?php echo $auctionItem['currentBid']?>).toString() + " or higher";
-
 		// info pertaining to sale items
 		<?php 
-		if ($forSale)
-			echo '$("#buying-details").show();
-		          $(".stock-label").html("");';
+		if (!$valid_match || !($forSale || $forAuction || $forRent))
+		{
+			echo '$("#NA-details").show();';
+		}
+		else 
+		{
+			// show info pertaining to sale items
+			if ($forSale)
+				echo '$("#buying-details").show();
+			          $(".stock-label").html("");';
 
-		// info pertaining to auction items
-		if ($forAuction)
-			echo '$("#auction-details").show();
-				  $(".ending-time").html("");
-  			      $(".remaining-time").html("");';
+			// info pertaining to auction items
+			if ($forAuction)
+				echo '$("#auction-details").show();
+					  $(".ending-time").html("");
+	  			      $(".remaining-time").html("");
+	  			      document.getElementById("newBidArea").placeholder = 
+					     "$" + (1 +'.$auctionItem['currentBid'].').toString() + " or higher";';
 
-  		// info pertaining to renting items
-		if ($forRent)
-			echo '$("#renting-details").show();';
-
-		if (!($forSale || $forAuction || $forRent))
-			echo '$("#NA-details").show();'
+	  		// info pertaining to renting items
+			if ($forRent)
+				echo '$("#renting-details").show();';
+		}
 		?>
-
   	</script>
 
 </html>
+
+<?php
+if (isset($_POST['buyItem']))
+{
+
+}
+else if (isset($_POST['placeBid']))
+{
+
+}
+else if (isset($_POST['rentItem']))
+{
+
+}
+?>
