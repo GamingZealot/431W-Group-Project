@@ -96,10 +96,11 @@
     	<img id="banner" src="banner.png" alt="Banner Image"/>
     </head>
 	<body style="background-color:powderblue;">
+	<font face="comic sans ms, comic sans, papyrus" color="red">
 	<center>
 		<?php
 		echo '<br> <br> <br> <br> <br> <br> <br> <br> <br> <br>';
-		if ($uid == 0){
+		if ($uid == 1){
 			echo '<b>Sales Report</b><br>';
 			$query5 = "SELECT DISTINCT M.title as Item, U.name as Buyer, US.name as Seller, T.revenue as Revenue
 						FROM Transactions as T, Items as I, Users as U, Is_Movie as IM, Movies as M, Is_Seller as ISe, Sellers as S, Users as US
@@ -178,6 +179,33 @@
 
 
 			echo '<br><br>';
+			
+			//rewards program
+			echo '<b>Rewards Program</b><br><br>';
+			
+			if($num_records2 < 2){
+				echo 'Lookie here boys! We got a new member. Buy some movies and join my rewards program! -Mike';
+			}
+			else if($num_records2 > 15)
+			{
+				echo 'Platinum Member<br>15% off storewide<br>FREE shipping<br>';
+				echo '<img id="pl" src="platinum.png""/>';
+			}
+			else if($num_records2 > 12)
+			{
+				echo 'Gold Member<br>10% off storewide<br>FREE shipping<br>';
+				echo '<img id="gold" src="gold.png""/>';
+			}			
+			else if($num_records2 > 7)
+			{
+				echo 'Silver Member<br>5% off storewide<br>FREE shipping<br>';
+				echo '<img id="sil" src="silver.png""/>';
+			}
+			else if($num_records2 > 2)
+			{
+				echo 'Bronze Member<br>FREE shipping<br>';
+				echo '<img id="br" src="bronze.png""/>';
+			}				
 		}
 	mysqli_close($db);
 		?>
@@ -192,4 +220,9 @@
   		<p><font size="2px"> Contact information: <a href="mailto:support@helloword.com">
   		support@helloworld.com</a>.</font></p>
 </footer>
+<script>
+function openLogout() {
+	document.location.href = 'logout.php';
+}
+</script>
 </html>
