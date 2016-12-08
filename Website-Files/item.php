@@ -14,8 +14,6 @@ else if (isset($_POST['rentItem']))
 // load data into cmpsc431w
 // source /Library/WebServer/Documents/helloworld/TableCreation.sql
 // source /Library/WebServer/Documents/helloworld/sample_data_1.sql
-// INSERT INTO CreditCards (cardNum, securityCode, cardType, cardExp) VALUES(1234123412341234, "789", "VISA", '1000-01-01 00:00:00');
-// INSERT INTO Uses_Card (uid, cardId) VALUES(9, 1);
 	$DEFAULT_MID = 0;
 	$DEFAULT_IID = 0;
 
@@ -127,8 +125,8 @@ else if (isset($_POST['rentItem']))
 		}
 		#moviePic
 		{
-			height: 92%;
-			width: 92%;
+			max-height: 92%;
+			max-width: 92%;
 			margin: 4%;
 		}
 		#item-purchase-info { width: 70%; float: right; }
@@ -196,7 +194,7 @@ else if (isset($_POST['rentItem']))
 					<input class="noDisplay" name="iid" value="<?php echo $iid?>"/>
 					<input class="noDisplay" name="mid" value="<?php echo $mid?>"/>
 					<input class="noDisplay" name="trType" value="1"/>
-					<button type="submit">Place bid</button>
+					<button type="submit"<?php if (!$loggedIn) echo 'name="placeBid"'?>>Place bid</button>
 					<br/>
 					Auction ends at <label><?php echo $auctionItem['endTime']?></label><br/>
 					Time remaining: <label>[calculate]</label>
