@@ -49,6 +49,17 @@
 		$result2 = mysqli_query($db, $query2) or die('Error querying database3.');
 		$num_records2 = $result2->num_rows;
 
+
+//get rented items 
+		$query8 = 
+		"SELECT *			
+		FROM Transactions as T, Items as I, RentableItems as RI, Is_Movie as IM, Movies as M
+		WHERE T.uid = ".$uid." AND T.itemId = I.itemId AND I.itemID = RI.itemId AND RI.itemId = IM.itemId AND IM.movieId = M.movieId";
+		$result8 = mysqli_query($db, $query8) or die('Error querying database3.');
+		$num_records8 = $result8->num_rows;
+
+
+
 //determine if seller
 		$query3 = 	
 		"SELECT *
@@ -85,6 +96,7 @@
     	<img id="banner" src="banner.png" alt="Banner Image"/>
     </head>
 	<body style="background-color:powderblue;">
+	<center>
 		<?php
 		echo '<br> <br> <br> <br> <br> <br> <br> <br> <br> <br>';
 		if ($uid == 0){
@@ -117,7 +129,10 @@
 			echo 'Age: '. $age.'<br><br>';
 
 			echo '<b>Auctions Won:</b><br>';
-			echo '<a href="post.php" class="button">List an item for sale</a><br>';
+			if($isSeller == True){
+				echo '<a href="post.php" class="button">List an item for sale</a><br>';
+			}
+			
 			if($num_records1 == 0){
 				echo 'You have not won any auctions yet. <br>';
 			}
@@ -135,7 +150,7 @@
  				echo 'Price Paid: '. $row2['price']. '<br>';
 			}
 
-			//if($isSeller == True){
+			if($isSeller == True){
 				$query4 = 	
 					"SELECT *
 					FROM Is_Seller as ISe, is_Movie as IM, Transactions as T, Movies as M
@@ -147,11 +162,26 @@
  						echo 'Movie Title: '. $row4['title']. '<br>';
  						echo 'Revenue: '. $row4['revenue']. '<br>';
  					}
-		//	}
+			}
+
+			echo '<br><b>Rented Movies: </b><br>';
+			if($num_records8 == 0){
+				echo 'You have not rented any movies yet. <br>';
+			}
+			if($isSeller == True){
+				echo '<a href="post.php" class="button">List an item for rent</a><br>';
+			}
+			while ($row8 = mysqli_fetch_array($result8)) {
+ 				echo 'Movie Title: '. $row8['title']. '<br>';
+ 				echo 'Price Paid: '. $row8['rentPrice']. '<br>';
+			}
+
+
 			echo '<br><br>';
 		}
 	mysqli_close($db);
 		?>
+		</center>
 
 
 
