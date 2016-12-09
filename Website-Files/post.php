@@ -78,7 +78,7 @@ if (isset($_POST['Submit1'])) {
 			mysqli_query($db, $query) or die('Error querying database 8.');
 		}
 		if($method == "rent"){
-			$query = "INSERT INTO RentableItems (rentPrice, itemID) VALUES ( ".$price.",".$itemID.")";
+			$query = "INSERT INTO RentableItems (rentPrice, itemID, availability) VALUES ( ".$price.", ".$itemID.", 1)";
 			mysqli_query($db, $query) or die('Error querying database 9.');
 
 		}
